@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style/App.css';
+import ChatWindow from './ChatWindow';
 
 class App extends Component {
     render() {
@@ -8,9 +9,12 @@ class App extends Component {
                 <div className="App-header">
                     <h1>React-Demo</h1>
                 </div>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
+                <div className="container">
+                    <div className="row">
+                        <ChatWindow />
+                        <ChatWindow />
+                    </div>
+                </div>
             </div>
         );
     }
