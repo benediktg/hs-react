@@ -2,7 +2,9 @@ import React, { Component } from "react";
 
 class Message extends Component {
   render() {
-    return <div />;
+    return (
+      <p><strong>{this.props.time}:</strong> {this.props.content}</p>
+    );
   }
 }
 

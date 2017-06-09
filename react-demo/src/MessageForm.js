@@ -5,9 +5,10 @@ class MessageForm extends Component {
     super(props);
     this.state = {
       username: "",
-      messageText: ""
+      messageText: "",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -18,10 +19,14 @@ class MessageForm extends Component {
     });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div className="row cols-sm">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="input-group fluid">
             <input
               name="username"

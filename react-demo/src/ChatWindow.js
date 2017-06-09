@@ -7,7 +7,7 @@ class ChatWindow extends Component {
     return (
       <div className="col-sm">
         <MessageForm />
-        <MessageList />
+        <MessageList messages={this.props.messages} />
       </div>
     );
   }

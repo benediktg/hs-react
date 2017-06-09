@@ -3,6 +3,13 @@ import "./style/App.css";
 import ChatWindow from "./ChatWindow";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: [],
+    };
+  };
+
   render() {
     return (
       <div className="App">
@@ -11,8 +18,8 @@ class App extends Component {
         </div>
         <div className="container">
           <div className="row">
-            <ChatWindow />
-            <ChatWindow />
+            <ChatWindow messages={this.state.messages} />
+            <ChatWindow messages={this.state.messages} />
           </div>
         </div>
       </div>
