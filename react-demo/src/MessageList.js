@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import Message from './Message';
+import React, { Component } from "react";
+import Message from "./Message";
 
 class MessageList extends Component {
-    render() {
-        return (
-            <div></div>
-        );
-    }
+  render() {
+    return <div />;
+  }
 }
 
 export default MessageList;
