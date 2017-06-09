@@ -3,45 +3,45 @@ import React, { Component } from "react";
 class MessageForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: "",
-      messageText: "",
-    };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMessageTextInputChange = this.handleMessageTextInputChange.bind(this);
+    this.handleUsernameInputChange = this.handleUsernameInputChange.bind(this);
+    this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
   }
 
-  handleInputChange(event) {
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState({
-      [name]: value
-    });
+  handleMessageTextInputChange(event) {
+    this.props.onMessageTextInput(event.target.value);
   }
 
-  handleSubmit(event) {
+  handleUsernameInputChange(event) {
+    this.props.onUsernameInput(event.target.value);
+  }
+
+  handleSubmitEvent(event) {
     event.preventDefault();
+    this.props.onSubmit(event);
   }
 
   render() {
     return (
       <div className="row cols-sm">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmitEvent}>
           <div className="input-group fluid">
             <input
               name="username"
               type="text"
-              value={this.state.username}
-              onChange={this.handleInputChange}
+              value={this.props.username}
+              onChange={this.handleUsernameInputChange}
               placeholder="Name"
+              required="true"
             />
           </div>
           <div className="input-group fluid">
             <textarea
               name="messageText"
-              value={this.state.messageText}
-              onChange={this.handleInputChange}
+              value={this.props.messageText}
+              onChange={this.handleMessageTextInputChange}
               placeholder="Nachricht"
+              required="true"
               style={{
                 width: '100%',
                 boxSizing: 'border-box',

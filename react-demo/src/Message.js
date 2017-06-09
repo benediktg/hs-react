@@ -3,7 +3,9 @@ import React, { Component } from "react";
 class Message extends Component {
   render() {
     return (
-      <p><strong>{this.props.time}:</strong> {this.props.content}</p>
+      <p>
+        <strong>{this.props.author}:</strong> {this.props.content} <small>({this.props.time})</small>
+      </p>
     );
   }
 }

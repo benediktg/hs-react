@@ -8,7 +8,15 @@ class App extends Component {
     this.state = {
       messages: [],
     };
+
+    this.addMessage = this.addMessage.bind(this);
   };
+
+  addMessage(message) {
+    this.setState({
+      messages: [...this.state.messages, message]
+    });
+  }
 
   render() {
     return (
@@ -18,8 +26,14 @@ class App extends Component {
         </div>
         <div className="container">
           <div className="row">
-            <ChatWindow messages={this.state.messages} />
-            <ChatWindow messages={this.state.messages} />
+            <ChatWindow
+              messages={this.state.messages}
+              onSubmit={this.addMessage}
+            />
+            <ChatWindow
+              messages={this.state.messages}
+              onSubmit={this.addMessage}
+            />
           </div>
         </div>
       </div>
