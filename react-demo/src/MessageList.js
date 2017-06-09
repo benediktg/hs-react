@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import moment from "moment";
+import React, { Component } from 'react';
+import moment from 'moment';
 import 'moment/locale/de';
-import Message from "./Message";
+import Message from './Message';
 
 class MessageList extends Component {
   render() {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class ChatInput extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class ChatInput extends Component {
               required="true"
               style={{
                 width: '100%',
-                boxSizing: 'border-box',
+                boxSizing: 'border-box'
               }}
             />
           </div>

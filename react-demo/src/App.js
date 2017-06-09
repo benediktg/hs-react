@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import ChatClient from "./ChatClient";
+import React, { Component } from 'react';
+import ChatClient from './ChatClient';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       messages: [],
-      clientCount: 3,
+      clientCount: 3
     };
 
     this.addMessage = this.addMessage.bind(this);
     this.addClient = this.addClient.bind(this);
     this.removeClient = this.removeClient.bind(this);
-  };
+  }
 
   addMessage(message) {
     this.setState({
@@ -38,17 +38,14 @@ class App extends Component {
     return (
       <div>
         <header className="row">
-          <h1>React-Demo</h1>
+          <h2>React-Demo</h2>
           <button onClick={this.addClient}>+</button>
           <button onClick={this.removeClient}>-</button>
         </header>
         <div className="container">
           <div className="row">
             {[...Array(this.state.clientCount)].map(() =>
-              <ChatClient
-                messages={this.state.messages}
-                onSubmit={this.addMessage}
-              />
+              <ChatClient messages={this.state.messages} onSubmit={this.addMessage} />
             )}
           </div>
         </div>
