@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import moment from 'moment';
 import ChatInput from "./ChatInput";
 import MessageList from "./MessageList";
 
@@ -28,12 +27,12 @@ class ChatClient extends Component {
     })
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     const message = {
       id: this.props.messages.length,
       author: this.state.username,
       content: this.state.messageText,
-      time: moment().format(),
+      time: new Date(),
     };
     this.props.onSubmit(message);
     this.setState({
