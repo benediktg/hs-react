@@ -10,8 +10,9 @@ class MessageList extends Component {
         <Message
           key={message.id}
           content={message.content}
-          time={moment(message.time).format('[um] LTS')}
+          time={moment(message.time).format('LTS')}
           author={message.author}
+          username={this.props.username}
         />
       </div>
     );

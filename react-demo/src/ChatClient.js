@@ -61,7 +61,7 @@ class ChatClient extends Component {
           onMessageTextInput={this.handleMessageTextInput}
           onSubmit={this.handleSubmit}
         />
-        <MessageList messages={this.props.messages} />
+        <MessageList messages={this.props.messages} username={this.state.username} />
       </div>
     );
   }

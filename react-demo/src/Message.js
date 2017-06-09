@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 
 class Message extends Component {
   render() {
+    const color = this.props.username === this.props.author ? 'blue' : 'red';
     return (
       <p>
-        <strong>{this.props.author}:</strong> {this.props.content}
-        {' '}<small>({this.props.time})</small>
+        {'['}{this.props.time}{']'} <span style={{ color: color }}>{this.props.author}</span>:
+        {' '}{this.props.content}
+        {' '}<button>+1</button>
       </p>
     );
   }
