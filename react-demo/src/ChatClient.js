@@ -7,23 +7,31 @@ class ChatClient extends Component {
     super(props);
     this.state = {
       username: '',
-      messageText: ''
+      messageText: '',
+      loggedIn: false
     };
 
-    this.handleMessageTextInput = this.handleMessageTextInput.bind(this);
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleMessageTextInput = this.handleMessageTextInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleMessageTextInput(messageText) {
-    this.setState({
-      messageText: messageText
-    });
   }
 
   handleUsernameInput(username) {
     this.setState({
       username: username
+    });
+  }
+
+  handleLogin() {
+    this.setState({
+      loggedIn: !this.state.loggedIn
+    });
+  }
+
+  handleMessageTextInput(messageText) {
+    this.setState({
+      messageText: messageText
     });
   }
 
@@ -45,10 +53,12 @@ class ChatClient extends Component {
       <div className="col-sm">
         <ChatInput
           username={this.state.username}
+          loggedIn={this.state.loggedIn}
           messageText={this.state.messageText}
           userInput={this.props.userInput}
-          onMessageTextInput={this.handleMessageTextInput}
           onUsernameInput={this.handleUsernameInput}
+          onLogin={this.handleLogin}
+          onMessageTextInput={this.handleMessageTextInput}
           onSubmit={this.handleSubmit}
         />
         <MessageList messages={this.props.messages} />
