@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ChatInput from './ChatInput';
 import MessageList from './MessageList';
 
-class ChatClient extends Component {
+class ChatClient extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,30 +17,32 @@ class ChatClient extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleUsernameInput(username) {
+  handleUsernameInput(event) {
+    const username = event.target.value;
     this.setState({
       username: username
     });
   }
 
-  handleLogin() {
+  handleLogin(event) {
+    event.preventDefault();
     this.setState({
       loggedIn: !this.state.loggedIn
     });
   }
 
-  handleMessageTextInput(messageText) {
+  handleMessageTextInput(event) {
+    const messageText = event.target.value;
     this.setState({
       messageText: messageText
     });
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     const message = {
-      id: this.props.messages.length,
       author: this.state.username,
-      content: this.state.messageText,
-      time: new Date()
+      content: this.state.messageText
     };
     this.props.onSubmit(message);
     this.setState({

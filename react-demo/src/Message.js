@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Message extends Component {
-  render() {
-    const color = this.props.username === this.props.author ? 'blue' : 'red';
+function Message(props) {
+  const color = props.username === props.author ? 'blue' : 'red';
+
     return (
       <p>
-        {'['}{this.props.time}{']'} <span style={{ color: color }}>{this.props.author}</span>:
-        {' '}{this.props.content}
-        {' '}<button>+1</button>
+      {'['}{props.time}{']'} <span style={{ color: color }}>{props.author}</span>:
+      {' '}{props.content}
       </p>
     );
-  }
 }
 
 export default Message;

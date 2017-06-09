@@ -1,28 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import moment from 'moment';
 import 'moment/locale/de';
 import Message from './Message';
 
-class MessageList extends Component {
-  render() {
-    const messages = this.props.messages.map(message =>
+function MessageList(props) {
+  const messages = props.messages.map(message =>
       <div className="col-sm-12">
         <Message
           key={message.id}
           content={message.content}
           time={moment(message.time).format('LTS')}
           author={message.author}
-          username={this.props.username}
+        username={props.username}
         />
       </div>
     );
 
     return (
-      <dl>
+    <div>
         {messages}
-      </dl>
+    </div>
     );
-  }
 }
 
 export default MessageList;

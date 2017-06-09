@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ChatClient from './ChatClient';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +15,8 @@ class App extends Component {
   }
 
   addMessage(message) {
+    message.id = this.state.messages.length;
+    message.time = new Date();
     this.setState({
       messages: [...this.state.messages, message]
     });
