@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import "./style/App.css";
-import ChatWindow from "./ChatWindow";
+import ChatClient from "./ChatClient";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       messages: [],
+      clientCount: 3,
     };
 
     this.addMessage = this.addMessage.bind(this);
+    this.addClient = this.addClient.bind(this);
+    this.removeClient = this.removeClient.bind(this);
   };
 
   addMessage(message) {
@@ -18,22 +20,36 @@ class App extends Component {
     });
   }
 
+  addClient() {
+    this.setState({
+      clientCount: this.state.clientCount + 1
+    });
+  }
+
+  removeClient() {
+    if (this.state.clientCount >= 1) {
+      this.setState({
+        clientCount: this.state.clientCount - 1
+      });
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
+      <div>
+        <header className="row">
           <h1>React-Demo</h1>
-        </div>
+          <button onClick={this.addClient}>+</button>
+          <button onClick={this.removeClient}>-</button>
+        </header>
         <div className="container">
           <div className="row">
-            <ChatWindow
-              messages={this.state.messages}
-              onSubmit={this.addMessage}
-            />
-            <ChatWindow
-              messages={this.state.messages}
-              onSubmit={this.addMessage}
-            />
+            {[...Array(this.state.clientCount)].map(() =>
+              <ChatClient
+                messages={this.state.messages}
+                onSubmit={this.addMessage}
+              />
+            )}
           </div>
         </div>
       </div>

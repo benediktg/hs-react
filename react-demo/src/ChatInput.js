@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class MessageForm extends Component {
+class ChatInput extends Component {
   constructor(props) {
     super(props);
     this.handleMessageTextInputChange = this.handleMessageTextInputChange.bind(this);
@@ -55,4 +55,4 @@ class MessageForm extends Component {
   }
 }
 
-export default MessageForm;
+export default ChatInput;

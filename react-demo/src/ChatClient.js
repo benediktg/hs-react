@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import moment from 'moment';
-import MessageForm from "./MessageForm";
+import ChatInput from "./ChatInput";
 import MessageList from "./MessageList";
 
-class ChatWindow extends Component {
+class ChatClient extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +44,7 @@ class ChatWindow extends Component {
   render() {
     return (
       <div className="col-sm">
-        <MessageForm
+        <ChatInput
           username={this.state.username}
           messageText={this.state.messageText}
           userInput={this.props.userInput}
@@ -58,4 +58,4 @@ class ChatWindow extends Component {
   }
 }
 
-export default ChatWindow;
+export default ChatClient;
