@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       messages: [],
-      clientCount: 2
+      clientCount: 2,
     };
 
     this.addMessage = this.addMessage.bind(this);
@@ -22,7 +22,7 @@ class App extends React.Component {
     message.likedFrom = [];
     console.log(message);
     this.setState({
-      messages: [...this.state.messages, message]
+      messages: [...this.state.messages, message],
     });
   }
 
@@ -34,20 +34,20 @@ class App extends React.Component {
     const messages = this.state.messages.slice();
     messages[like.target].likedFrom = [...prevLikes, like.source];
     this.setState({
-      messages: messages
+      messages: messages,
     });
   }
 
   addClient() {
     this.setState({
-      clientCount: this.state.clientCount + 1
+      clientCount: this.state.clientCount + 1,
     });
   }
 
   removeClient() {
     if (this.state.clientCount >= 1) {
       this.setState({
-        clientCount: this.state.clientCount - 1
+        clientCount: this.state.clientCount - 1,
       });
     }
   }

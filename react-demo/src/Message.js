@@ -7,7 +7,7 @@ function Message(props) {
     event.preventDefault();
     const like = {
       source: props.username,
-      target: props.message.id
+      target: props.message.id,
     };
     props.onLike(like);
   }
@@ -21,7 +21,7 @@ function Message(props) {
 
   return (
     <p>
-      {time} <span style={{ color: color }}>{props.message.author}</span>:
+      {time} <span style={{color: color}}>{props.message.author}</span>:
       {' '}{props.message.text}
       {' '}<button title={likedFrom} onClick={handleLikeButton}>+1</button>
     </p>

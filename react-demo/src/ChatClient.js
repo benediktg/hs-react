@@ -8,7 +8,7 @@ class ChatClient extends React.Component {
     this.state = {
       username: '',
       messageText: '',
-      loggedIn: false
+      loggedIn: false,
     };
 
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
@@ -20,21 +20,21 @@ class ChatClient extends React.Component {
   handleUsernameInput(event) {
     const username = event.target.value;
     this.setState({
-      username: username
+      username: username,
     });
   }
 
   handleLogin(event) {
     event.preventDefault();
     this.setState({
-      loggedIn: !this.state.loggedIn
+      loggedIn: !this.state.loggedIn,
     });
   }
 
   handleMessageTextInput(event) {
     const messageText = event.target.value;
     this.setState({
-      messageText: messageText
+      messageText: messageText,
     });
   }
 
@@ -42,11 +42,11 @@ class ChatClient extends React.Component {
     event.preventDefault();
     const message = {
       author: this.state.username,
-      text: this.state.messageText
+      text: this.state.messageText,
     };
     this.props.onSubmit(message);
     this.setState({
-      messageText: ''
+      messageText: '',
     });
   }
 

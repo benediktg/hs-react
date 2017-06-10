@@ -21,7 +21,7 @@ function ChatInput(props) {
               required
               style={{
                 width: '100%',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
               }}
             />
           </div>
