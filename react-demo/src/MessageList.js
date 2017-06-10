@@ -1,26 +1,20 @@
 import React from 'react';
-import moment from 'moment';
-import 'moment/locale/de';
 import Message from './Message';
 
 function MessageList(props) {
-  const messages = props.messages.map(message =>
-      <div className="col-sm-12">
-        <Message
-          key={message.id}
-          content={message.content}
-          time={moment(message.time).format('LTS')}
-          author={message.author}
-        username={props.username}
-        />
-      </div>
-    );
+  if (props.inactive) {
+    return null;
+  }
 
-    return (
+  const messages = props.messages.map(message =>
+    <Message key={message.id} message={message} username={props.username} onLike={props.onLike} />
+  );
+
+  return (
     <div>
-        {messages}
+      {messages}
     </div>
-    );
+  );
 }
 
 export default MessageList;

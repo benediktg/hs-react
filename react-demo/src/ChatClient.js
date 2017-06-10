@@ -42,7 +42,7 @@ class ChatClient extends React.Component {
     event.preventDefault();
     const message = {
       author: this.state.username,
-      content: this.state.messageText
+      text: this.state.messageText
     };
     this.props.onSubmit(message);
     this.setState({
@@ -63,7 +63,12 @@ class ChatClient extends React.Component {
           onMessageTextInput={this.handleMessageTextInput}
           onSubmit={this.handleSubmit}
         />
-        <MessageList messages={this.props.messages} username={this.state.username} />
+        <MessageList
+          inactive={!this.state.loggedIn}
+          messages={this.props.messages}
+          username={this.state.username}
+          onLike={this.props.onLike}
+        />
       </div>
     );
   }
