@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "lodash": "^4.17.4",
+    "mini.css": "^2.3.0",
     "moments": "^0.0.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
