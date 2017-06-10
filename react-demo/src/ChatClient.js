@@ -8,9 +8,7 @@ class ChatClient extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
       messageText: '',
-      loggedIn: false,
     };
 
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
@@ -20,17 +18,20 @@ class ChatClient extends React.Component {
   }
 
   handleUsernameInput(event) {
-    const username = event.target.value;
-    this.setState({
-      username: username,
-    });
+    const userObj = {
+      clientId: this.props.client.id,
+      username: event.target.value,
+    };
+    this.props.onUsernameInput(userObj);
   }
 
   handleLogin(event) {
     event.preventDefault();
-    this.setState({
-      loggedIn: !this.state.loggedIn,
-    });
+    const loginObj = {
+      clientId: this.props.client.id,
+      username: this.props.client.username,
+    };
+    this.props.onLogin(loginObj);
   }
 
   handleMessageTextInput(event) {
@@ -43,7 +44,7 @@ class ChatClient extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const message = {
-      author: this.state.username,
+      author: this.props.client.username,
       text: this.state.messageText,
     };
     this.props.onSubmit(message);
@@ -56,19 +57,18 @@ class ChatClient extends React.Component {
     return (
       <div className="col-sm">
         <ChatInput
-          username={this.state.username}
-          loggedIn={this.state.loggedIn}
+          username={this.props.client.username}
+          loggedIn={this.props.client.loggedIn}
           messageText={this.state.messageText}
-          userInput={this.props.userInput}
           onUsernameInput={this.handleUsernameInput}
           onLogin={this.handleLogin}
           onMessageTextInput={this.handleMessageTextInput}
           onSubmit={this.handleSubmit}
         />
         <MessageList
-          inactive={!this.state.loggedIn}
+          inactive={!this.props.client.loggedIn}
           messages={this.props.messages}
-          username={this.state.username}
+          username={this.props.client.username}
           onLike={this.props.onLike}
         />
       </div>
@@ -77,8 +77,14 @@ class ChatClient extends React.Component {
 }
 
 ChatClient.propTypes = {
-  userInput: PropTypes.string,
+  client: PropTypes.shape({
+    id: PropTypes.number,
+    username: PropTypes.string,
+    loggedIn: PropTypes.bool,
+  }),
   messages: PropTypes.arrayOf(PropTypes.instanceOf(Message)),
+  onUsernameInput: PropTypes.func,
+  onLogin: PropTypes.func,
   onSubmit: PropTypes.func,
   onLike: PropTypes.func,
 };

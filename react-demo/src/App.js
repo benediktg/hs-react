@@ -7,13 +7,39 @@ class App extends React.Component {
     super(props);
     this.state = {
       messages: [],
-      clientCount: 2,
+      clients: Array(2).fill().map((client, index) => ({id: index, username: '', loggedIn: false})),
     };
 
-    this.addMessage = this.addMessage.bind(this);
     this.addClient = this.addClient.bind(this);
     this.removeClient = this.removeClient.bind(this);
+    this.handleUsernameInput = this.handleUsernameInput.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.addMessage = this.addMessage.bind(this);
     this.addLike = this.addLike.bind(this);
+  }
+
+  handleUsernameInput(userObj) {
+    const clients = this.state.clients.slice();
+    clients.find(client => client.id === userObj.clientId).username = userObj.username;
+    this.setState({
+      clients: clients,
+    });
+  }
+
+  handleLogin(userObj) {
+    const loggedInUsers = this.state.clients
+      .filter(client => client.loggedIn)
+      .map(client => client.username);
+    const prevLoggedIn = this.state.clients.find(client => client.id === userObj.clientId).loggedIn;
+    if (!prevLoggedIn && _.includes(loggedInUsers, userObj.username)) {
+      alert('Benutzername bereits vergeben');
+      return;
+    }
+    const clients = this.state.clients.slice();
+    clients.find(client => client.id === userObj.clientId).loggedIn = !prevLoggedIn;
+    this.setState({
+      clients: clients,
+    });
   }
 
   addMessage(message) {
@@ -41,16 +67,17 @@ class App extends React.Component {
 
   addClient() {
     this.setState({
-      clientCount: this.state.clientCount + 1,
+      clients: [
+        ...this.state.clients,
+        {id: this.state.clients.length, username: '', loggedIn: false},
+      ],
     });
   }
 
   removeClient() {
-    if (this.state.clientCount >= 1) {
-      this.setState({
-        clientCount: this.state.clientCount - 1,
-      });
-    }
+    this.setState({
+      clients: this.state.clients.slice(0, -1),
+    });
   }
 
   render() {
@@ -63,10 +90,13 @@ class App extends React.Component {
         </header>
         <div className="container">
           <div className="row">
-            {[...Array(this.state.clientCount)].map((elem, index) =>
+            {this.state.clients.map(client =>
               <ChatClient
-                key={index}
+                key={client.id}
+                client={client}
                 messages={this.state.messages}
+                onUsernameInput={this.handleUsernameInput}
+                onLogin={this.handleLogin}
                 onSubmit={this.addMessage}
                 onLike={this.addLike}
               />

@@ -32,8 +32,10 @@ function Message(props) {
   return (
     <p>
       {time} <span style={{color: color}}>{props.message.author}</span>:
-      {' '}{props.message.text}
-      {' '}<button title={likeText} onClick={handleLikeButton}>&#128077;{countText}</button>
+      {' '}{props.message.text}{' '}
+      <button title={likeText} onClick={handleLikeButton}>
+        <span role="img">&#128077;</span>{countText}
+      </button>
     </p>
   );
 }
