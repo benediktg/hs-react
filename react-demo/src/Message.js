@@ -15,15 +15,25 @@ function Message(props) {
   const time = '[' + moment(props.message.time).format('LTS') + ']';
   const ownMessage = props.username === props.message.author;
   const color = ownMessage ? 'blue' : 'red';
-  const likedFrom = props.message.likedFrom.length
-    ? 'Gefällt ' + props.message.likedFrom.join(', ')
-    : '';
+  const likeCount = props.message.likedFrom.length;
+  let likeText;
+  if (likeCount === 0) {
+    likeText = '';
+  } else if (likeCount === 1) {
+    likeText = 'Gefällt ' + props.message.likedFrom[0];
+  } else if (likeCount > 1) {
+    likeText =
+      'Gefällt ' +
+      props.message.likedFrom.slice(0, -1).join(', ') +
+      ' und ' +
+      props.message.likedFrom.slice(-1);
+  }
 
   return (
     <p>
       {time} <span style={{color: color}}>{props.message.author}</span>:
       {' '}{props.message.text}
-      {' '}<button title={likedFrom} onClick={handleLikeButton}>+1</button>
+      {' '}<button title={likeText} onClick={handleLikeButton}>+1</button>
     </p>
   );
 }
