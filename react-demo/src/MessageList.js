@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Message from './Message';
 
 function MessageList(props) {
@@ -16,5 +17,11 @@ function MessageList(props) {
     </div>
   );
 }
+
+MessageList.propTypes = {
+  inactive: PropTypes.bool,
+  messages: PropTypes.arrayOf(PropTypes.instanceOf(Message)),
+  onLike: PropTypes.func,
+};
 
 export default MessageList;

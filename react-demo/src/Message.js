@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/de';
 
@@ -37,5 +38,17 @@ function Message(props) {
     </p>
   );
 }
+
+Message.propTypes = {
+  message: PropTypes.shape({
+    id: PropTypes.number,
+    author: PropTypes.string,
+    text: PropTypes.string,
+    time: PropTypes.instanceOf(Date),
+    likedFrom: PropTypes.array,
+  }),
+  username: PropTypes.string,
+  onLike: PropTypes.func,
+};
 
 export default Message;

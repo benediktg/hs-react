@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ChatInput from './ChatInput';
 import MessageList from './MessageList';
+import Message from './Message';
 
 class ChatClient extends React.Component {
   constructor(props) {
@@ -73,5 +75,12 @@ class ChatClient extends React.Component {
     );
   }
 }
+
+ChatClient.propTypes = {
+  userInput: PropTypes.string,
+  messages: PropTypes.arrayOf(PropTypes.instanceOf(Message)),
+  onSubmit: PropTypes.func,
+  onLike: PropTypes.func,
+};
 
 export default ChatClient;
