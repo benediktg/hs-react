@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       messages: [],
-      clientCount: 3
+      clientCount: 2
     };
 
     this.addMessage = this.addMessage.bind(this);

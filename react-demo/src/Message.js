@@ -15,7 +15,9 @@ function Message(props) {
   const time = '[' + moment(props.message.time).format('LTS') + ']';
   const ownMessage = props.username === props.message.author;
   const color = ownMessage ? 'blue' : 'red';
-  const likedFrom = 'Gefällt ' + props.message.likedFrom.join(', ');
+  const likedFrom = props.message.likedFrom.length
+    ? 'Gefällt ' + props.message.likedFrom.join(', ')
+    : '';
 
   return (
     <p>
