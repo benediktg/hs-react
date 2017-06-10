@@ -23,10 +23,10 @@ function Message(props) {
     likeText = 'Gefällt ' + props.message.likedFrom[0];
   } else if (likeCount > 1) {
     likeText =
-      'Gefällt ' +
-      props.message.likedFrom.slice(0, -1).join(', ') +
-      ' und ' +
-      props.message.likedFrom.slice(-1);
+      'Gefällt '
+      + props.message.likedFrom.slice(0, -1).join(', ')
+      + ' und '
+      + props.message.likedFrom.slice(-1);
   }
 
   return (

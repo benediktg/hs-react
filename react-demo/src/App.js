@@ -20,7 +20,6 @@ class App extends React.Component {
     message.id = this.state.messages.length;
     message.time = new Date();
     message.likedFrom = [];
-    console.log(message);
     this.setState({
       messages: [...this.state.messages, message],
     });

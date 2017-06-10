@@ -1,0 +1,40 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "ecmaVersion": 7,
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "array-bracket-spacing": ["error", "never"],
+        "comma-dangle": ["error", "always-multiline"],
+        "constructor-super": "warn",
+        "valid-typeof": "warn",
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "unix"],
+        "max-len": ["error", 100],
+        "no-console": "warn",
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "warn",
+        "no-unreachable": "warn",
+        "no-unused-vars": "warn",
+        "object-curly-spacing": ["error", "never"],
+        "operator-linebreak": ["error", "before", {"overrides": {"=": "after"}}],
+        "quotes": ["error", "single", {"avoidEscape": true, "allowTemplateLiterals": true}],
+        "semi": ["error", "always"]
+    }
+}
