@@ -1,5 +1,4 @@
 {
-    "root": true,
     "env": {
         "browser": true,
         "commonjs": true,
@@ -9,10 +8,9 @@
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
-            "ecmaVersion": 7,
-            "experimentalObjectRestSpread": true,
             "jsx": true
         },
+        "ecmaVersion": 7,
         "sourceType": "module"
     },
     "plugins": [
@@ -23,7 +21,7 @@
         "comma-dangle": ["error", "always-multiline"],
         "constructor-super": "warn",
         "valid-typeof": "warn",
-        "indent": ["error", 4],
+        "indent": ["error", 2],
         "linebreak-style": ["error", "unix"],
         "max-len": ["error", 100],
         "no-console": "warn",
