@@ -32,7 +32,9 @@ class App extends React.Component {
       return;
     }
     const messages = this.state.messages.slice();
-    messages[like.target].likedFrom = [...prevLikes, like.source];
+    messages[like.target].likedFrom = [...prevLikes, like.source].sort((a, b) =>
+      a.localeCompare(b)
+    );
     this.setState({
       messages: messages,
     });
