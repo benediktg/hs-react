@@ -17,24 +17,23 @@ function Message(props) {
   const ownMessage = props.username === props.message.author;
   const color = ownMessage ? 'blue' : 'red';
   const likeCount = props.message.likedFrom.length;
-  let likeText;
+  let likeText, countText;
   if (likeCount === 0) {
     likeText = '';
-  } else if (likeCount === 1) {
-    likeText = 'Gefällt ' + props.message.likedFrom[0];
-  } else if (likeCount > 1) {
+    countText = '';
+  } else if (likeCount > 0) {
     likeText =
       'Gefällt '
-      + props.message.likedFrom.slice(0, -1).join(', ')
-      + ' und '
+      + (likeCount === 1 ? '' : props.message.likedFrom.slice(0, -1).join(', ') + ' und ')
       + props.message.likedFrom.slice(-1);
+    countText = ' (' + likeCount + ')';
   }
 
   return (
     <p>
       {time} <span style={{color: color}}>{props.message.author}</span>:
       {' '}{props.message.text}
-      {' '}<button title={likeText} onClick={handleLikeButton}>+1</button>
+      {' '}<button title={likeText} onClick={handleLikeButton}>&#128077;{countText}</button>
     </p>
   );
 }
