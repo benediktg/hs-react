@@ -19,65 +19,71 @@ class App extends React.Component {
   }
 
   handleUsernameInput(userObj) {
-    const clients = this.state.clients.slice();
-    clients.find(client => client.id === userObj.clientId).username = userObj.username;
-    this.setState({
-      clients: clients,
+    this.setState(prevState => {
+      const clients = prevState.clients.slice();
+      clients.find(client => client.id === userObj.clientId).username = userObj.username;
+
+      return {clients: clients};
     });
   }
 
   handleLogin(userObj) {
-    const loggedInUsers = this.state.clients
-      .filter(client => client.loggedIn)
-      .map(client => client.username);
-    const prevLoggedIn = this.state.clients.find(client => client.id === userObj.clientId).loggedIn;
-    if (!prevLoggedIn && _.includes(loggedInUsers, userObj.username)) {
-      alert('Benutzername bereits vergeben');
-      return;
-    }
-    const clients = this.state.clients.slice();
-    clients.find(client => client.id === userObj.clientId).loggedIn = !prevLoggedIn;
-    this.setState({
-      clients: clients,
+    this.setState(prevState => {
+      const loggedInUsers = prevState.clients
+        .filter(client => client.loggedIn)
+        .map(client => client.username);
+      const prevLoggedIn = prevState.clients.find(client => client.id === userObj.clientId)
+        .loggedIn;
+      if (!prevLoggedIn && _.includes(loggedInUsers, userObj.username)) {
+        alert('Benutzername bereits vergeben');
+        return;
+      }
+      const clients = prevState.clients.slice();
+      clients.find(client => client.id === userObj.clientId).loggedIn = !prevLoggedIn;
+
+      return {clients: clients};
     });
   }
 
   addMessage(message) {
-    message.id = this.state.messages.length;
-    message.time = new Date();
-    message.likedFrom = [];
-    this.setState({
-      messages: [...this.state.messages, message],
-    });
+    this.setState(prevState => ({
+      messages: [
+        ...prevState.messages,
+        {
+          ...message,
+          id: prevState.messages.length,
+          time: new Date(),
+          likedFrom: [],
+        },
+      ],
+    }));
   }
 
   addLike(like) {
-    const prevLikes = this.state.messages.find(message => message.id === like.target).likedFrom;
-    if (_.includes(prevLikes, like.source)) {
-      return;
-    }
-    const messages = this.state.messages.slice();
-    messages[like.target].likedFrom = [...prevLikes, like.source].sort((a, b) =>
-      a.localeCompare(b)
-    );
-    this.setState({
-      messages: messages,
+    this.setState(prevState => {
+      const prevLikes = prevState.messages.find(message => message.id === like.target).likedFrom;
+      if (_.includes(prevLikes, like.source)) {
+        return {};
+      }
+      const messages = prevState.messages.slice();
+      messages[like.target].likedFrom = [...prevLikes, like.source].sort((a, b) =>
+        a.localeCompare(b)
+      );
+
+      return {messages: messages};
     });
   }
 
   addClient() {
-    this.setState({
-      clients: [
-        ...this.state.clients,
-        {id: this.state.clients.length, username: '', loggedIn: false},
-      ],
-    });
+    this.setState(prevState => ({
+      clients: [...prevState.clients, {id: prevState.clients.length, username: '', loggedIn: false}],
+    }));
   }
 
   removeClient() {
-    this.setState({
-      clients: this.state.clients.slice(0, -1),
-    });
+    this.setState(prevState => ({
+      clients: prevState.clients.slice(0, -1),
+    }));
   }
 
   render() {
