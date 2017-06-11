@@ -3,8 +3,8 @@ import _ from 'lodash';
 import ChatClient from './ChatClient';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       messages: [],
       clients: Array(2).fill().map((client, index) => ({id: index, username: '', loggedIn: false})),

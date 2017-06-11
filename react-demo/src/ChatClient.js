@@ -5,8 +5,8 @@ import MessageList from './MessageList';
 import Message from './Message';
 
 class ChatClient extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       messageText: '',
     };
