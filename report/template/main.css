@@ -13,7 +13,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6{
-  font-family:source-sans-pro, sans-serif;
+  /* source-sans-pro hat nicht funktioniert, daher 'Source Sans Pro' */
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 img, pre{

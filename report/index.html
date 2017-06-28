@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="style/automatic-section-numbering.css">
   </head>
 
   <body>
@@ -28,7 +30,24 @@
 
     <section>
       <h2>React</h2>
-      <p></p>
+      <p>React ist eine Javascript-Bibliothek zur deklarativen</p>
+
+      <section>
+        <h3>JSX</h3>
+      </section>
+
+      <section>
+        <h3>Komponenten</h3>
+      </section>
+
+      <section>
+        <h3>Unidirektionaler Datenfluss</h3>
+      </section>
+
+      <section>
+        <h3>Virtuelles DOM</h3>
+      </section>
+
     </section>
 
     <section>
@@ -50,22 +69,6 @@
       <h2>Literaturverzeichnis</h2>
       <p></p>
     </section>
-
-    <script>
-      'use strict';
-      let index = 1;
-      // automatisches Einfügen der Überschriftennummerierung
-      for (let section of document.getElementsByTagName('section')) {
-        const heading = section.getElementsByTagName('h2')[0];
-        heading.innerHTML = index + '. ' + heading.innerHTML;
-        let subIndex = 1;
-        for (let subHeading of section.getElementsByTagName('h3')) {
-          subHeading.innerHTML = index + '.' + subIndex + '. ' + subHeading.innerHTML;
-          subIndex += 1;
-        }
-        index += 1;
-      }
-    </script>
   </body>
 
 </html>

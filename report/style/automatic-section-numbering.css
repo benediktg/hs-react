@@ -1,0 +1,13 @@
+/* automatische Überschriftennummerierung */
+
+body,
+section h2 + *,
+section h3 + * {
+    counter-reset: section;
+}
+
+section h2:before,
+section h3:before {
+    counter-increment: section;
+    content: counters(section, ".") " ";
+}
