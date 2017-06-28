@@ -27,7 +27,23 @@
     </section>
 
     <section>
-      <h2></h2>
+      <h2>React</h2>
+      <p></p>
+    </section>
+
+    <section>
+      <h2>Flux</h2>
+      <p></p>
+    </section>
+
+    <section>
+      <h2>React-Demo</h2>
+      <p></p>
+    </section>
+
+    <section>
+      <h2>Fazit</h2>
+      <p></p>
     </section>
 
     <section class="references">
@@ -36,7 +52,9 @@
     </section>
 
     <script>
+      'use strict';
       let index = 1;
+      // automatisches Einfügen der Überschriftennummerierung
       for (let section of document.getElementsByTagName('section')) {
         const heading = section.getElementsByTagName('h2')[0];
         heading.innerHTML = index + '. ' + heading.innerHTML;
