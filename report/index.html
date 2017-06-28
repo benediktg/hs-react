@@ -21,18 +21,33 @@
       </h3>
     </header>
 
-    <main>
-      <section>
-        <h2>1. Einleitung</h2>
-        <p></p>
-      </section>
-    </main>
-
-    <section class="references">
-      <h2>6. Literaturverzeichnis</h2>
+    <section>
+      <h2>Einleitung</h2>
       <p></p>
     </section>
 
+    <section>
+      <h2></h2>
+    </section>
+
+    <section class="references">
+      <h2>Literaturverzeichnis</h2>
+      <p></p>
+    </section>
+
+    <script>
+      let index = 1;
+      for (let section of document.getElementsByTagName('section')) {
+        const heading = section.getElementsByTagName('h2')[0];
+        heading.innerHTML = index + '. ' + heading.innerHTML;
+        let subIndex = 1;
+        for (let subHeading of section.getElementsByTagName('h3')) {
+          subHeading.innerHTML = index + '.' + subIndex + '. ' + subHeading.innerHTML;
+          subIndex += 1;
+        }
+        index += 1;
+      }
+    </script>
   </body>
 
 </html>
