@@ -9,6 +9,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <link rel="stylesheet" href="style/automatic-section-numbering.css">
+    <style>
+      code {
+        font-family: 'Inconsolata', monospace;
+      }
+
+    </style>
   </head>
 
   <body>
@@ -25,49 +31,110 @@
 
     <section>
       <h2>Einleitung</h2>
-      <p></p>
+      <p>
+      </p>
     </section>
 
     <section>
-      <h2>React</h2>
+      <h2>Features</h2>
       <p>React ist eine Javascript-Bibliothek zur deklarativen</p>
 
       <section>
         <h3>JSX</h3>
+        <p>
+          Bei JSX handelt es sich um eine Syntaxerweiterung für Javascript, die es ermöglicht, „HTML in Javascript“
+          zu schreiben. Damit werden HTML-Tags zu validen Werten beispielsweise für Variablen oder die
+          Rückgabe von Funktionen.
+        </p>
+        <p>
+          Da <code>class</code> und <code>for</code> in Javascript bereits reservierte Wörter sind, sollte
+          auf <code>className</code> respektive <code>htmlFor</code> ausgewichen werden. Javascript-Ausdrücke
+          können von geschweiften Klammern umgeben eingegeben werden. Zur Verhinderung von Cross-Site-Scripting (XSS)
+          werden diese Ausdrücke escaped. <a href="r4">[4]</a>
+        </p>
+        <p>
+          Um JSX verwenden zu können, muss React importiert sein und ein Transpiler, zum Beispiel Babel mit Webpack,
+          eingerichtet sein. Das Kommandozeilen-Werkzeug <code>create-react-app</code>,
+          <a href="#r2">[2]</a> welches zum initialen Erstellen einer React-Anwendung empfohlen wird,
+          erledigt die Einrichtung von Webpack bereits.
+        </p>
+        <p>
+          Babel überführt dann den JSX-Code, beispielsweise
+          <pre>&lt;button type="submit"&gt;Senden&lt;/button&gt;</pre> in gewöhnlichen Javascript-Code:
+          <pre>
+React.createElement(
+    "button",
+    { type: "submit" },
+    "Senden"
+);</pre><a href="#r3">[3]</a>
+        </p>
+        <p>
+          Man sieht hier, dass JSX zu lesbarerem Code verhelfen kann. Allerdings ist es ebenso möglich, auf JSX
+          und damit auch auf Babel zu verzichten. Die Verwendung von JSX ist optional.
+        </p>
       </section>
 
       <section>
         <h3>Komponenten</h3>
+        <p>
+          Komponenten sind wiederverwendbare und voneinander isolierte Objekte, die die React-Bibliothek
+          auf das DOM (Document Object Model) abbildet
+        </p>
       </section>
 
       <section>
         <h3>Unidirektionaler Datenfluss</h3>
+        <p>
+        </p>
       </section>
 
       <section>
         <h3>Virtuelles DOM</h3>
+        <p>
+        </p>
       </section>
 
     </section>
 
     <section>
       <h2>Flux</h2>
-      <p></p>
+      <p>
+      </p>
     </section>
 
     <section>
       <h2>React-Demo</h2>
-      <p></p>
+      <p>
+      </p>
     </section>
 
     <section>
       <h2>Fazit</h2>
-      <p></p>
+      <p>
+      </p>
     </section>
 
     <section class="references">
       <h2>Literaturverzeichnis</h2>
-      <p></p>
+      <p class="reference" id="r1">
+        [1] React-Dokumentation [Online]. Available:
+        <a href="https://facebook.github.io/react/docs/">https://facebook.github.io/react/docs/</a> (28.06.2017)
+      </p>
+      <p class="reference" id="r2">
+        [2] Github-Repository zu <em>create-react-app</em> [Online]. Available:
+        <a href="https://github.com/facebookincubator/create-react-app">https://github.com/facebookincubator/create-react-app</a>        (28.06.2017)
+      </p>
+      <p class="reference" id="r3">
+        [3] Babel-REPL-Umgebung [Online]. Available:
+        <a href="https://babeljs.io/repl/#?presets=react&code_lz=DwIwrgLhD2B2AEECeAHApgXgEQGcwgFsBLCLAPgGU1YATa4AenCjjKA">https://babeljs.io/repl/</a>        (28.06.2017)
+      </p>
+      <p class="reference" id="r4">
+        [4] JSX Prevents Injection Attacks [Online]. Available:
+        <a href="https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks">https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks</a> (28.06.2017)
+      </p>
+      <p class="reference" id="r5">
+        [5]
+      </p>
     </section>
   </body>
 
