@@ -2,13 +2,9 @@
     "deploy": {
         "packages": [
             {
-                "files": [
-                    "react-demo/build/**"
-                ],
+                "files": ["react-demo/build/**"],
                 "name": "React Demo",
-                "targets": [
-                    "neptun"
-                ]
+                "targets": ["neptun"]
             }
         ],
         "targets": [
@@ -17,19 +13,12 @@
                 "agentForward": true,
                 "dir": "public_html/react-demo",
                 "host": "neptun.g5r.eu",
-                "mappings": [
-                    {
-                        "source": "react-demo/build",
-                        "target": ""
-                    }
-                ],
+                "mappings": [{"source": "react-demo/build", "target": ""}],
                 "name": "neptun",
                 "port": 22,
                 "type": "sftp",
                 "user": "deploy"
             }
         ]
-    },
-    "jshint.enable": false,
-    "prettier.eslintIntegration": true
+    }
 }
