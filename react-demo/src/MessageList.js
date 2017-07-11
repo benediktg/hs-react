@@ -7,8 +7,15 @@ function MessageList(props) {
     return null;
   }
 
-  const messages = props.messages.map(message =>
-    <Message key={message.id} message={message} username={props.username} onLike={props.onLike} />
+  const messages = props.messages.map((message, index) =>
+    <Message
+      key={message.id}
+      message={message}
+      username={props.username}
+      onLike={(likes) => props.onLike(
+        props.messages.slice(0, index).concat(likes).concat(props.messages.slice(index + 1))
+      )}
+    />
   );
 
   return (
@@ -21,6 +28,7 @@ function MessageList(props) {
 MessageList.propTypes = {
   inactive: PropTypes.bool,
   messages: PropTypes.arrayOf(PropTypes.instanceOf(Message)),
+  username: PropTypes.string,
   onLike: PropTypes.func,
 };
 

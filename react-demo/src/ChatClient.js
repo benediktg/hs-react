@@ -39,7 +39,11 @@ class ChatClient extends React.Component {
 
   handleLogin = event => {
     event.preventDefault();
-    this.props.onLogin({clientId: this.props.client.id, username: this.props.client.username});
+    this.props.onLogin({
+      id: this.props.client.id,
+      username: this.props.client.username,
+      loggedIn: !this.props.client.loggedIn,
+    });
   };
 
   handleMessageTextInput = event => this.setState({messageText: event.target.value});

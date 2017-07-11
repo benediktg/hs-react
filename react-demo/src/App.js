@@ -12,6 +12,18 @@ class App extends React.PureComponent {
   }
 
   render() {
+    const clients = this.state.clients.map(client => (
+      <ChatClient
+        key={client.id}
+        client={client}
+        messages={this.state.messages}
+        onUsernameInput={this.handleUsernameInput}
+        onLogin={this.handleLogin}
+        onSubmit={this.addMessage}
+        onLike={this.addLike}
+      />
+    ));
+
     return (
       <div>
         <header className="row">
@@ -21,75 +33,56 @@ class App extends React.PureComponent {
         </header>
         <div className="container">
           <div className="row">
-            {this.state.clients.map(client =>
-              <ChatClient
-                key={client.id}
-                client={client}
-                messages={this.state.messages}
-                onUsernameInput={this.handleUsernameInput}
-                onLogin={this.handleLogin}
-                onSubmit={this.addMessage}
-                onLike={this.addLike}
-              />
-            )}
+            {clients}
           </div>
         </div>
       </div>
     );
   }
 
-  handleUsernameInput = userObj => this.setState(prevState => {
-    const clients = prevState.clients.slice();
-    clients.find(client => client.id === userObj.clientId).username = userObj.username;
+  handleUsernameInput = userObj =>
+    this.setState(prevState => {
+      const clients = prevState.clients.slice();
+      clients.find(client => client.id === userObj.clientId).username = userObj.username;
 
-    return {clients};
-  });
+      return {clients};
+    });
 
-
-  handleLogin = userObj => this.setState(prevState => {
+  handleLogin = client => this.setState(prevState => {
     const loggedInUsers = prevState.clients
-      .filter(client => client.loggedIn)
-      .map(client => client.username);
-    const prevLoggedIn = prevState.clients.find(client => client.id === userObj.clientId)
-      .loggedIn;
-    if (!prevLoggedIn && _.includes(loggedInUsers, userObj.username)) {
+      .filter(item => item.loggedIn)
+      .map(item => item.username);
+    const prevLoggedIn = prevState.clients.find(item => item.id === client.id).loggedIn;
+    if (!prevLoggedIn && _.includes(loggedInUsers, client.username)) {
       alert('Benutzername bereits vergeben');
       return;
+    } else {
+      const clients = prevState.clients.slice(0, client.id)
+        .concat([client]).concat(prevState.clients.slice(client.id + 1));
+      return {clients};
     }
-    const clients = prevState.clients.slice();
-    clients.find(client => client.id === userObj.clientId).loggedIn = !prevLoggedIn;
-
-    return {clients};
   });
 
+  addMessage = message =>
+    this.setState(prevState => ({
+      messages: prevState.messages.concat({
+        ...message,
+        id: prevState.messages.length,
+        time: new Date(),
+        likedFrom: [],
+      }),
+    }));
 
-  addMessage = message => this.setState(prevState => ({
-    messages: prevState.messages.concat({
-      ...message,
-      id: prevState.messages.length,
-      time: new Date(),
-      likedFrom: [],
-    }),
-  }));
+  addLike = messages => this.setState({messages});
 
-  addLike = like => this.setState(prevState => {
-    const prevLikes = prevState.messages.find(message => message.id === like.target).likedFrom;
-    if (_.includes(prevLikes, like.source)) {
-      return {};
-    }
-    const messages = prevState.messages.slice();
-    messages[like.target].likedFrom = prevLikes.concat(like.source).sort((a, b) =>
-      a.localeCompare(b)
-    );
-
-    return {messages};
-  });
-
-  addClient = () => this.setState(prevState => ({
-    clients: prevState.clients.concat(
-      {id: prevState.clients.length, username: '', loggedIn: false}
-    ),
-  }));
+  addClient = () =>
+    this.setState(prevState => ({
+      clients: prevState.clients.concat({
+        id: prevState.clients.length,
+        username: '',
+        loggedIn: false,
+      }),
+    }));
 
   removeClient = () => this.setState(prevState => ({clients: prevState.clients.slice(0, -1)}));
 }
