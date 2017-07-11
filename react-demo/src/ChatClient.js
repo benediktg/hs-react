@@ -10,47 +10,6 @@ class ChatClient extends React.Component {
     this.state = {
       messageText: '',
     };
-
-    this.handleUsernameInput = this.handleUsernameInput.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleMessageTextInput = this.handleMessageTextInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleUsernameInput(event) {
-    const userObj = {
-      clientId: this.props.client.id,
-      username: event.target.value,
-    };
-    this.props.onUsernameInput(userObj);
-  }
-
-  handleLogin(event) {
-    event.preventDefault();
-    const loginObj = {
-      clientId: this.props.client.id,
-      username: this.props.client.username,
-    };
-    this.props.onLogin(loginObj);
-  }
-
-  handleMessageTextInput(event) {
-    const messageText = event.target.value;
-    this.setState({
-      messageText: messageText,
-    });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const message = {
-      author: this.props.client.username,
-      text: this.state.messageText,
-    };
-    this.props.onSubmit(message);
-    this.setState({
-      messageText: '',
-    });
   }
 
   render() {
@@ -74,6 +33,22 @@ class ChatClient extends React.Component {
       </div>
     );
   }
+
+  handleUsernameInput = event =>
+    this.props.onUsernameInput({clientId: this.props.client.id, username: event.target.value});
+
+  handleLogin = event => {
+    event.preventDefault();
+    this.props.onLogin({clientId: this.props.client.id, username: this.props.client.username});
+  };
+
+  handleMessageTextInput = event => this.setState({messageText: event.target.value});
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.onSubmit({author: this.props.client.username, text: this.state.messageText});
+    this.setState({messageText: ''});
+  };
 }
 
 ChatClient.propTypes = {
