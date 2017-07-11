@@ -48,7 +48,7 @@
         <p>
           Da <code>class</code> und <code>for</code> in Javascript bereits reservierte Wörter sind, sollte
           auf <code>className</code> respektive <code>htmlFor</code> ausgewichen werden. Javascript-Ausdrücke
-          können von geschweiften Klammern umgeben eingegeben werden. Zur Verhinderung von Cross-Site-Scripting
+          können innerhalb geschweifter Klammern eingegeben werden. Zur Verhinderung von Cross-Site-Scripting
           (XSS) werden diese Ausdrücke escaped. <a href="#r4">[4]</a>
         </p>
         <p>
@@ -63,9 +63,9 @@
         <p>in gewöhnlichen Javascript-Code:</p>
         <pre>
 React.createElement(
-    "button",
-    { type: "submit" },
-    "Senden"
+    &quot;button&quot;,
+    { type: &quot;submit&quot; },
+    &quot;Senden&quot;
 );</pre>
         <a href="#r3">[3]</a>
         <p>
@@ -81,11 +81,45 @@ React.createElement(
           auf das Document Object Model (DOM) abbildet. Eine einfachere Variante dieser Komponenten sind
           React-Elemente, welche gewöhnliche HTML-Elemente darstellen und aus denen man eigene Komponenten
           zusammenbauen kann. Zur Vermeidung von Namenskonflikten zwischen den Standard-Elementen und
-          den Komponenten müssen letztere großgeschrieben werden.
+          den Komponenten müssen letztere großgeschrieben werden:
+        </p>
+        <pre>
+&lt;Component&gt;
+  &lt;p&gt;Hallo Welt.&lt;/p&gt;
+&lt;/Component&gt;</pre>
+        <p>
+          Jede Komponente kann Eigenschaften (sogenannte <em>props</em>) und ein Zustandsobjekt (<em>state</em>)
+          haben. <em>Props</em> sind nur zum lesenden Zugriff innerhalb der Komponente bestimmt und werden
+          durch die übergeordnete Komponente mit Werten versehen. Das Zustandsobjekt wird im Gegensatz
+          zu den <em>props</em> auch durch die Komponente beschrieben, allerdings nur einmal beim Aufruf
+          des Konstruktors. Anschließend werden mittels der Methode <code>setState</code> nur noch „Anfragen“
+          getätigt, den Zustand zu aktualisieren. <code>setState</code> bekommt dabei als Argument entweder
+          ein Objekt oder eine Callback-Funktion, die ein Objekt zurückliefert, dessen Schlüssel eine
+          Untermenge derer des <code>state</code>-Objekts bilden. Die letztere Variante mit Callback
+          ist insofern sinnvoll, dass <code>setState</code> keine synchrone Funktion ist, sondern auch
+          erst „irgendwann später“ tatsächlich durchgeführt werden kann. <a href="#r6">[6]</a> Durch
+          „Verschmelzen“ der Werte der Objekte erfolgt dann die Aktualisierung.
         </p>
         <p>
-
+          Komponenten, die keinen Zustand besitzen, heißen auch funktionale Komponenten, da sie wie reine Funktionen
+          bei gleicher Eingabe (hier <em>props</em>) stets die gleiche Ausgabe liefern. Dementsprechend
+          lassen sich solche zustandslosen Komponenten auch als Funktion notieren. Der Hauptunterschied
+          hinsichtlich der Schreibweise ist dabei, dass die funktionale Komponente ausschließlich aus
+          der <code>render</code>-Methode besteht.
         </p>
+        <pre>
+class Example extends React.Component {
+  render() {
+    return &lt;h1&gt;Hallo {this.props.name}&lt;/h1&gt;;
+  }
+}
+
+function Example(props) {
+  return &lt;h1&gt;Hallo {props.name}&lt;/h1&gt;;
+}
+
+// Verwendung:
+&lt;Example name=&quot;Welt&quot;/&gt;</pre>
       </section>
 
       <section>
@@ -153,9 +187,14 @@ React.createElement(
         </a> (11.07.2017)
       </p>
       <p class="reference" id="r6">
-        [6]
+        [6] State updates may be asynchronous [Online]. Available:
+        <a href="https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous">
+          https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
+        </a> (11.07.2017)
+      </p>
+      <p class="reference" id="r7">
+        [7]
         <a href="">
-
         </a> (11.07.2017)
       </p>
     </section>
