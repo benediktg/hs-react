@@ -2,9 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/de';
-import {Set} from 'immutable';
 
 function Message(props) {
+  function handleLikeButton(event) {
+    event.preventDefault();
+    const like = {
+      source: props.username,
+      target: props.message.id,
+    };
+    props.onLike(like);
+  }
+
   const time = '[' + moment(props.message.time).format('LTS') + ']';
   const ownMessage = props.username === props.message.author;
   const color = ownMessage ? 'blue' : 'red';
@@ -23,17 +31,10 @@ function Message(props) {
 
   return (
     <p>
-      {time} <span style={{color: color}}>{props.message.author}</span>: {props.message.text}{' '}
-      <button
-        title={likeText}
-        onClick={() => props.onLike(
-          props.message.likedFrom.add(props.username).sort((a, b) => a.localeCompare(b))
-        )}
-      >
-        <span role="img" aria-label="Daumen hoch">
-          &#128077;
-        </span>
-        {countText}
+      {time} <span style={{color: color}}>{props.message.author}</span>:
+      {' '}{props.message.text}{' '}
+      <button title={likeText} onClick={handleLikeButton}>
+        <span role="img" aria-label="Daumen hoch">&#128077;</span>{countText}
       </button>
     </p>
   );
@@ -45,7 +46,7 @@ Message.propTypes = {
     author: PropTypes.string,
     text: PropTypes.string,
     time: PropTypes.instanceOf(Date),
-    likedFrom: PropTypes.instanceOf(Set),
+    likedFrom: PropTypes.array,
   }),
   username: PropTypes.string,
   onLike: PropTypes.func,
