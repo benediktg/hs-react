@@ -9,12 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <link rel="stylesheet" href="style/automatic-section-numbering.css">
-    <style>
-      code {
-        font-family: 'Inconsolata', monospace;
-      }
-
-    </style>
+    <link rel="stylesheet" href="style/code.css">
   </head>
 
   <body>
@@ -38,7 +33,7 @@
     <section>
       <h2>Features</h2>
       <p>
-        React ist eine Javascript-Bibliothek zur deklarativen
+        React ist eine Javascript-Bibliothek zur deklarativen Programmierung von Single Page Applications (SPAs).
       </p>
 
       <section>
@@ -46,16 +41,18 @@
         <p>
           Bei JSX handelt es sich um eine Syntaxerweiterung für Javascript, die es ermöglicht, „HTML in Javascript“
           zu schreiben. Damit werden HTML-Tags zu validen Werten beispielsweise für Variablen oder die
-          Rückgabe von Funktionen.
+          Rückgabe von Funktionen. Vorteil dabei ist, dass der Programmierer nicht wie bei einer Templatesprache
+          eine „proprietäre“ Syntax lernen muss und gleichzeitig auf die volle Funktionalität einer gewöhnlichen
+          Programmiersprache wie Javascript zugreifen kann. <a href="#r5">[5]</a>
         </p>
         <p>
           Da <code>class</code> und <code>for</code> in Javascript bereits reservierte Wörter sind, sollte
           auf <code>className</code> respektive <code>htmlFor</code> ausgewichen werden. Javascript-Ausdrücke
           können von geschweiften Klammern umgeben eingegeben werden. Zur Verhinderung von Cross-Site-Scripting
-          (XSS) werden diese Ausdrücke escaped. <a href="r4">[4]</a>
+          (XSS) werden diese Ausdrücke escaped. <a href="#r4">[4]</a>
         </p>
         <p>
-          Um JSX verwenden zu können, muss React importiert sein und ein Transpiler, zum Beispiel Babel mit Webpack,
+          Um JSX verwenden zu können, muss React importiert und ein Transpiler, zum Beispiel Babel mit Webpack,
           eingerichtet sein. Das Kommandozeilen-Werkzeug <code>create-react-app</code>,
           <a href="#r2">[2]</a> welches zum initialen Erstellen einer React-Anwendung empfohlen wird,
           erledigt die Einrichtung von Webpack bereits.
@@ -80,8 +77,14 @@ React.createElement(
       <section>
         <h3>Komponenten</h3>
         <p>
-          Komponenten sind wiederverwendbare und voneinander isolierte Objekte, die die React-Bibliothek auf das
-          Document Object Model (DOM) abbildet.
+          React-Komponenten sind wiederverwendbare und voneinander isolierte Objekte, die die React-Bibliothek
+          auf das Document Object Model (DOM) abbildet. Eine einfachere Variante dieser Komponenten sind
+          React-Elemente, welche gewöhnliche HTML-Elemente darstellen und aus denen man eigene Komponenten
+          zusammenbauen kann. Zur Vermeidung von Namenskonflikten zwischen den Standard-Elementen und
+          den Komponenten müssen letztere großgeschrieben werden.
+        </p>
+        <p>
+
         </p>
       </section>
 
@@ -121,26 +124,39 @@ React.createElement(
       <h2>Literaturverzeichnis</h2>
       <p class="reference" id="r1">
         [1] React-Dokumentation [Online]. Available:
-        <a href="https://facebook.github.io/react/docs/">https://facebook.github.io/react/docs/</a>
-        <span>(28.06.2017)</span>
+        <a href="https://facebook.github.io/react/docs/">
+          https://facebook.github.io/react/docs/
+        </a> (28.06.2017)
       </p>
       <p class="reference" id="r2">
         [2] Github-Repository zu <em>create-react-app</em> [Online]. Available:
-        <a href="https://github.com/facebookincubator/create-react-app">https://github.com/facebookincubator/create-react-app</a>
-        <span>(28.06.2017)</span>
+        <a href="https://github.com/facebookincubator/create-react-app">
+          https://github.com/facebookincubator/create-react-app
+        </a> (28.06.2017)
       </p>
       <p class="reference" id="r3">
         [3] Babel-REPL-Umgebung [Online]. Available:
-        <a href="https://babeljs.io/repl/#?presets=react&amp;code_lz=DwIwrgLhD2B2AEECeAHApgXgEQGcwgFsBLCLAPgGU1YATa4AenCjjKA">https://babeljs.io/repl/</a>
-        <span>(28.06.2017)</span>
+        <a href="https://babeljs.io/repl/#?presets=react&amp;code_lz=DwIwrgLhD2B2AEECeAHApgXgEQGcwgFsBLCLAPgGU1YATa4AenCjjKA">
+          https://babeljs.io/repl/
+        </a> (28.06.2017)
       </p>
       <p class="reference" id="r4">
         [4] JSX Prevents Injection Attacks [Online]. Available:
-        <a href="https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks">https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks</a>
-        <span>(28.06.2017)</span>
+        <a href="https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks">
+          https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks
+        </a> (28.06.2017)
       </p>
       <p class="reference" id="r5">
-        [5]
+        [5] React’s JSX: The Other Side of the Coin [Online]. Available:
+        <a href="https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98">
+          https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98
+        </a> (11.07.2017)
+      </p>
+      <p class="reference" id="r6">
+        [6]
+        <a href="">
+
+        </a> (11.07.2017)
       </p>
     </section>
   </body>
