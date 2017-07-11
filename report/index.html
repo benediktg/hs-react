@@ -1,113 +1,113 @@
 <!DOCTYPE html>
 <html lang="de">
 
-  <head>
-    <title>Hauptseminar Web Engineering im Sommersemester 2017 – ReactJS</title>
-    <link rel="stylesheet" href="template/main.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+  <title>Hauptseminar Web Engineering im Sommersemester 2017 – ReactJS</title>
+  <link rel="stylesheet" href="template/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <link rel="stylesheet" href="style/automatic-section-numbering.css">
-    <link rel="stylesheet" href="style/code.css">
-  </head>
+  <link rel="stylesheet" href="style/automatic-section-numbering.css">
+  <link rel="stylesheet" href="style/code.css">
+</head>
 
-  <body>
-    <header>
-      <h2>Hauptseminar Web Engineering im Sommersemester 2017</h2>
-      <h1>ReactJS</h1>
-      <h2 class="author">Benedikt Geißler</h2>
-      <h3 class="affiliation">
-        Professur Verteilte und Selbstorganisierende Rechnersysteme
-        <br>Technische Universität Chemnitz
-        <br>Chemnitz, Deutschland
-      </h3>
-    </header>
+<body>
+  <header>
+    <h2>Hauptseminar Web Engineering im Sommersemester 2017</h2>
+    <h1>ReactJS</h1>
+    <h2 class="author">Benedikt Geißler</h2>
+    <h3 class="affiliation">
+      Professur Verteilte und Selbstorganisierende Rechnersysteme
+      <br>Technische Universität Chemnitz
+      <br>Chemnitz, Deutschland
+    </h3>
+  </header>
+
+  <section>
+    <h2>Einleitung</h2>
+    <p>
+    </p>
+  </section>
+
+  <section>
+    <h2>Features</h2>
+    <p>
+      React ist eine Javascript-Bibliothek zur deklarativen Programmierung von Single Page Applications (SPAs).
+    </p>
 
     <section>
-      <h2>Einleitung</h2>
+      <h3>JSX</h3>
       <p>
+        Bei JSX handelt es sich um eine Syntaxerweiterung für Javascript, die es ermöglicht, „HTML in Javascript“
+        zu schreiben. Damit werden HTML-Tags zu validen Werten beispielsweise für Variablen oder die
+        Rückgabe von Funktionen. Vorteil dabei ist, dass der Programmierer nicht wie bei einer Templatesprache
+        eine „proprietäre“ Syntax lernen muss und gleichzeitig auf die volle Funktionalität einer gewöhnlichen
+        Programmiersprache wie Javascript zugreifen kann. <a href="#r5">[5]</a>
+      </p>
+      <p>
+        Da <code>class</code> und <code>for</code> in Javascript bereits reservierte Wörter sind, sollte
+        auf <code>className</code> respektive <code>htmlFor</code> ausgewichen werden. Javascript-Ausdrücke
+        können innerhalb geschweifter Klammern eingegeben werden. Zur Verhinderung von Cross-Site-Scripting
+        (XSS) werden diese Ausdrücke escaped. <a href="#r4">[4]</a>
+      </p>
+      <p>
+        Um JSX verwenden zu können, muss React importiert und ein Transpiler, zum Beispiel Babel mit Webpack,
+        eingerichtet sein. Das Kommandozeilen-Werkzeug <code>create-react-app</code>,
+        <a href="#r2">[2]</a> welches zum initialen Erstellen einer React-Anwendung empfohlen wird, erledigt
+        die Einrichtung von Webpack bereits.
+      </p>
+
+      <p>Babel überführt dann den JSX-Code, beispielsweise</p>
+      <pre>&lt;button type=&quot;submit&quot;&gt;Senden&lt;/button&gt;</pre>
+      <p>in gewöhnlichen Javascript-Code:</p>
+      <pre>
+React.createElement(
+  &quot;button&quot;,
+  { type: &quot;submit&quot; },
+  &quot;Senden&quot;
+);</pre>
+      <a href="#r3">[3]</a>
+      <p>
+        Man sieht hier, dass JSX zu lesbarerem Code verhelfen kann. Allerdings ist es ebenso möglich, auf JSX
+        und damit auch auf Babel zu verzichten. Die Verwendung von JSX ist optional.
       </p>
     </section>
 
     <section>
-      <h2>Features</h2>
+      <h3>Komponenten</h3>
       <p>
-        React ist eine Javascript-Bibliothek zur deklarativen Programmierung von Single Page Applications (SPAs).
+        React-Komponenten sind wiederverwendbare und voneinander isolierte Objekte, die die React-Bibliothek
+        auf das Document Object Model (DOM) abbildet. Eine einfachere Variante dieser Komponenten sind
+        React-Elemente, welche gewöhnliche HTML-Elemente darstellen und aus denen man eigene Komponenten
+        zusammenbauen kann. Zur Vermeidung von Namenskonflikten zwischen den Standard-Elementen und den
+        Komponenten müssen letztere großgeschrieben werden:
       </p>
-
-      <section>
-        <h3>JSX</h3>
-        <p>
-          Bei JSX handelt es sich um eine Syntaxerweiterung für Javascript, die es ermöglicht, „HTML in Javascript“
-          zu schreiben. Damit werden HTML-Tags zu validen Werten beispielsweise für Variablen oder die
-          Rückgabe von Funktionen. Vorteil dabei ist, dass der Programmierer nicht wie bei einer Templatesprache
-          eine „proprietäre“ Syntax lernen muss und gleichzeitig auf die volle Funktionalität einer gewöhnlichen
-          Programmiersprache wie Javascript zugreifen kann. <a href="#r5">[5]</a>
-        </p>
-        <p>
-          Da <code>class</code> und <code>for</code> in Javascript bereits reservierte Wörter sind, sollte
-          auf <code>className</code> respektive <code>htmlFor</code> ausgewichen werden. Javascript-Ausdrücke
-          können innerhalb geschweifter Klammern eingegeben werden. Zur Verhinderung von Cross-Site-Scripting
-          (XSS) werden diese Ausdrücke escaped. <a href="#r4">[4]</a>
-        </p>
-        <p>
-          Um JSX verwenden zu können, muss React importiert und ein Transpiler, zum Beispiel Babel mit Webpack,
-          eingerichtet sein. Das Kommandozeilen-Werkzeug <code>create-react-app</code>,
-          <a href="#r2">[2]</a> welches zum initialen Erstellen einer React-Anwendung empfohlen wird,
-          erledigt die Einrichtung von Webpack bereits.
-        </p>
-
-        <p>Babel überführt dann den JSX-Code, beispielsweise</p>
-        <pre>&lt;button type=&quot;submit&quot;&gt;Senden&lt;/button&gt;</pre>
-        <p>in gewöhnlichen Javascript-Code:</p>
-        <pre>
-React.createElement(
-    &quot;button&quot;,
-    { type: &quot;submit&quot; },
-    &quot;Senden&quot;
-);</pre>
-        <a href="#r3">[3]</a>
-        <p>
-          Man sieht hier, dass JSX zu lesbarerem Code verhelfen kann. Allerdings ist es ebenso möglich, auf JSX
-          und damit auch auf Babel zu verzichten. Die Verwendung von JSX ist optional.
-        </p>
-      </section>
-
-      <section>
-        <h3>Komponenten</h3>
-        <p>
-          React-Komponenten sind wiederverwendbare und voneinander isolierte Objekte, die die React-Bibliothek
-          auf das Document Object Model (DOM) abbildet. Eine einfachere Variante dieser Komponenten sind
-          React-Elemente, welche gewöhnliche HTML-Elemente darstellen und aus denen man eigene Komponenten
-          zusammenbauen kann. Zur Vermeidung von Namenskonflikten zwischen den Standard-Elementen und
-          den Komponenten müssen letztere großgeschrieben werden:
-        </p>
-        <pre>
+      <pre>
 &lt;Component&gt;
   &lt;p&gt;Hallo Welt.&lt;/p&gt;
 &lt;/Component&gt;</pre>
-        <p>
-          Jede Komponente kann Eigenschaften (sogenannte <em>props</em>) und ein Zustandsobjekt (<em>state</em>)
-          haben. <em>Props</em> sind nur zum lesenden Zugriff innerhalb der Komponente bestimmt und werden
-          durch die übergeordnete Komponente mit Werten versehen. Das Zustandsobjekt wird im Gegensatz
-          zu den <em>props</em> auch durch die Komponente beschrieben, allerdings nur einmal beim Aufruf
-          des Konstruktors. Anschließend werden mittels der Methode <code>setState</code> nur noch „Anfragen“
-          getätigt, den Zustand zu aktualisieren. <code>setState</code> bekommt dabei als Argument entweder
-          ein Objekt oder eine Callback-Funktion, die ein Objekt zurückliefert, dessen Schlüssel eine
-          Untermenge derer des <code>state</code>-Objekts bilden. Die letztere Variante mit Callback
-          ist insofern sinnvoll, dass <code>setState</code> keine synchrone Funktion ist, sondern auch
-          erst „irgendwann später“ tatsächlich durchgeführt werden kann. <a href="#r6">[6]</a> Durch
-          „Verschmelzen“ der Werte der Objekte erfolgt dann die Aktualisierung.
-        </p>
-        <p>
-          Komponenten, die keinen Zustand besitzen, heißen auch funktionale Komponenten, da sie wie reine Funktionen
-          bei gleicher Eingabe (hier <em>props</em>) stets die gleiche Ausgabe liefern. Dementsprechend
-          lassen sich solche zustandslosen Komponenten auch als Funktion notieren. Der Hauptunterschied
-          hinsichtlich der Schreibweise ist dabei, dass die funktionale Komponente ausschließlich aus
-          der <code>render</code>-Methode besteht.
-        </p>
-        <pre>
+      <p>
+        Jede Komponente kann Eigenschaften (sogenannte <em>props</em>) und ein Zustandsobjekt (<em>state</em>)
+        haben. <em>Props</em> sind nur zum lesenden Zugriff innerhalb der Komponente bestimmt und werden
+        durch die übergeordnete Komponente mit Werten versehen. Das Zustandsobjekt wird im Gegensatz
+        zu den <em>props</em> auch durch die Komponente beschrieben, allerdings nur einmal beim Aufruf
+        des Konstruktors. Anschließend werden mittels der Methode <code>setState</code> nur noch „Anfragen“
+        getätigt, den Zustand zu aktualisieren. <code>setState</code> bekommt dabei als Argument entweder
+        ein Objekt oder eine Callback-Funktion, die ein Objekt zurückliefert, dessen Schlüssel eine Untermenge
+        derer des <code>state</code>-Objekts bilden. Die letztere Variante mit Callback ist insofern
+        sinnvoll, dass <code>setState</code> keine synchrone Funktion ist, sondern auch erst „irgendwann
+        später“ tatsächlich durchgeführt werden kann. <a href="#r6">[6]</a> Durch „Verschmelzen“ der
+        Werte der Objekte erfolgt dann die Aktualisierung.
+      </p>
+      <p>
+        Komponenten, die keinen Zustand besitzen, heißen auch funktionale Komponenten, da sie wie reine Funktionen
+        bei gleicher Eingabe (hier <em>props</em>) stets die gleiche Ausgabe liefern. Dementsprechend
+        lassen sich solche zustandslosen Komponenten auch als Funktion notieren. Der Hauptunterschied
+        hinsichtlich der Schreibweise ist dabei, dass die funktionale Komponente ausschließlich aus der
+        <code>render</code>-Methode besteht.
+      </p>
+      <pre>
 class Example extends React.Component {
   render() {
     return &lt;h1&gt;Hallo {this.props.name}&lt;/h1&gt;;
@@ -120,84 +120,110 @@ function Example(props) {
 
 // Verwendung:
 &lt;Example name=&quot;Welt&quot;/&gt;</pre>
-      </section>
-
-      <section>
-        <h3>Unidirektionaler Datenfluss</h3>
-        <p>
-        </p>
-      </section>
-
-      <section>
-        <h3>Virtuelles DOM</h3>
-        <p>
-        </p>
-      </section>
-
     </section>
 
     <section>
-      <h2>Flux</h2>
+      <h3>Lebenszyklus einer Komponente</h3>
       <p>
+
       </p>
     </section>
 
     <section>
-      <h2>React-Demo</h2>
+      <h3>Unidirektionaler Datenfluss</h3>
       <p>
+        Im Gegensatz zu anderen Bibliotheken respektive Frameworks wie beispielsweise Angular
+        <a href="#r7">[7]</a> gibt es bei React keine Zwei-Wege-Datenbindung, sondern es beschränkt sich
+        auf unidirektionalen Datenfluss. Das bedeutet, dass jede Komponente nur ihren eigenen Zustand,
+        nicht aber den einer übergeordneten Komponente modifizieren sowie lediglich untergeordneten Komponenten
+        Informationen über <em>props</em> mitgeben, aber von ihnen keine empfangen kann.
+      </p>
+      <p>
+        Um eine derartige Funktionalität dennoch zu realisieren, kann eine Funktion über die
+        <em>props</em> weitergereicht werden, welche dann entweder entsprechende Aufrufe von
+        <code>setState</code> oder oder eine Funktion einer wiederum übergeordneten Komponente aufruft.
+        Dies hat zur Folge, dass man sich überlegen muss, wo der Zustand einer Komponente überhaupt sinnvollerweise
+        vorgehalten werden sollte.
       </p>
     </section>
 
     <section>
-      <h2>Fazit</h2>
+      <h3>Virtuelles DOM</h3>
       <p>
       </p>
     </section>
 
-    <section class="references">
-      <h2>Literaturverzeichnis</h2>
-      <p class="reference" id="r1">
-        [1] React-Dokumentation [Online]. Available:
-        <a href="https://facebook.github.io/react/docs/">
+  </section>
+
+  <section>
+    <h2>Flux</h2>
+    <p>
+    </p>
+  </section>
+
+  <section>
+    <h2>React-Demo</h2>
+    <p>
+    </p>
+  </section>
+
+  <section>
+    <h2>Fazit</h2>
+    <p>
+    </p>
+  </section>
+
+  <section class="references">
+    <h2>Literaturverzeichnis</h2>
+    <p class="reference" id="r1">
+      [1] React Documentation [Online]. Available:
+      <a href="https://facebook.github.io/react/docs/">
           https://facebook.github.io/react/docs/
         </a> (28.06.2017)
-      </p>
-      <p class="reference" id="r2">
-        [2] Github-Repository zu <em>create-react-app</em> [Online]. Available:
-        <a href="https://github.com/facebookincubator/create-react-app">
+    </p>
+    <p class="reference" id="r2">
+      [2] Github-Repository zu <em>create-react-app</em> [Online]. Available:
+      <a href="https://github.com/facebookincubator/create-react-app">
           https://github.com/facebookincubator/create-react-app
         </a> (28.06.2017)
-      </p>
-      <p class="reference" id="r3">
-        [3] Babel-REPL-Umgebung [Online]. Available:
-        <a href="https://babeljs.io/repl/#?presets=react&amp;code_lz=DwIwrgLhD2B2AEECeAHApgXgEQGcwgFsBLCLAPgGU1YATa4AenCjjKA">
+    </p>
+    <p class="reference" id="r3">
+      [3] Babel-REPL-Umgebung [Online]. Available:
+      <a href="https://babeljs.io/repl/#?presets=react&amp;code_lz=DwIwrgLhD2B2AEECeAHApgXgEQGcwgFsBLCLAPgGU1YATa4AenCjjKA">
           https://babeljs.io/repl/
         </a> (28.06.2017)
-      </p>
-      <p class="reference" id="r4">
-        [4] JSX Prevents Injection Attacks [Online]. Available:
-        <a href="https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks">
+    </p>
+    <p class="reference" id="r4">
+      [4] React Documention – JSX Prevents Injection Attacks [Online]. Available:
+      <a href="https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks">
           https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks
         </a> (28.06.2017)
-      </p>
-      <p class="reference" id="r5">
-        [5] React’s JSX: The Other Side of the Coin [Online]. Available:
-        <a href="https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98">
+    </p>
+    <p class="reference" id="r5">
+      [5] React’s JSX: The Other Side of the Coin [Online]. Available:
+      <a href="https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98">
           https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98
         </a> (11.07.2017)
-      </p>
-      <p class="reference" id="r6">
-        [6] State updates may be asynchronous [Online]. Available:
-        <a href="https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous">
+    </p>
+    <p class="reference" id="r6">
+      [6] React Documention – State updates may be asynchronous [Online]. Available:
+      <a href="https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous">
           https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
         </a> (11.07.2017)
-      </p>
-      <p class="reference" id="r7">
-        [7]
-        <a href="">
+    </p>
+    <p class="reference" id="r7">
+      [7] Angular Architecture Overview – Data binding [Online]. Available:
+      <a href="https://angular.io/guide/architecture#data-binding">
+          https://angular.io/guide/architecture#data-binding
         </a> (11.07.2017)
-      </p>
-    </section>
-  </body>
+    </p>
+    <p class="reference" id="r8">
+      [8] React Documention – Identify where your state should live [Online]. Available:
+      <a href="https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live">
+          https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
+        </a> (11.07.2017)
+    </p>
+  </section>
+</body>
 
 </html>
