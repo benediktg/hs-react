@@ -123,13 +123,6 @@ function Example(props) {
     </section>
 
     <section>
-      <h3>Lebenszyklus einer Komponente</h3>
-      <p>
-
-      </p>
-    </section>
-
-    <section>
       <h3>Unidirektionaler Datenfluss</h3>
       <p>
         Im Gegensatz zu anderen Bibliotheken respektive Frameworks wie beispielsweise Angular
@@ -142,15 +135,35 @@ function Example(props) {
         Um eine derartige Funktionalität dennoch zu realisieren, kann eine Funktion über die
         <em>props</em> weitergereicht werden, welche dann entweder entsprechende Aufrufe von
         <code>setState</code> oder oder eine Funktion einer wiederum übergeordneten Komponente aufruft.
-        Dies hat zur Folge, dass man sich überlegen muss, wo der Zustand einer Komponente überhaupt sinnvollerweise
-        vorgehalten werden sollte.
+        Dies hat zur Folge, dass man sich überlegen muss, wo der Zustand einer Komponente sinnvollerweise
+        überhaupt vorgehalten werden sollte. <a href="#r8">[8]</a>
       </p>
     </section>
 
     <section>
       <h3>Virtuelles DOM</h3>
       <p>
+        Wenn man beispielsweise klassisch mit jQuery oder der Javascript-DOM-API eine interaktive Webanwendung
+        baut, hat man gegebenenfalls das Problem, dass man immer wieder Informationen zwischen dem DOM
+        und nativen Javascript-Objekten bzw. Variablen zu synchronisieren und dementsprechend häufige
+        DOM-Zugriffe hat. (Beispiel: Man schreibt einen Wert in ein <code>data</code>-Attribut
+        und liest dieses von einer anderen Stelle im Code aus.) Dies kann zum einen zu schlechter Performance,
+        weil etwa unnötig viele DOM-Manipulationen erfolgen, und zum anderen zu Inkonsistenzen führen,
+        da der HTML-Code dann eng mit dem Javascript-Programm verzahnt ist und z. B. bei einer Umbenennung
+        von Selektoren (IDs oder HTML-Klassen) etwas übersehen worden ist. Der Fehler taucht dann erst
+        beim Ausprobieren und evtl. auch nur auf unauffällige Art und Weise auf. <a href="#r5">[5]</a>
       </p>
+      <p>
+        React addressiert dieses Problem mit einem seiner prominentesten Features, dem virtuellen DOM.
+      </p>
+
+      <section>
+        <h4>Lebenszyklus einer Komponente</h4>
+        <p>
+
+        </p>
+      </section>
+
     </section>
 
   </section>
@@ -212,7 +225,7 @@ function Example(props) {
         </a> (11.07.2017)
     </p>
     <p class="reference" id="r7">
-      [7] Angular Architecture Overview – Data binding [Online]. Available:
+      [7] Angular Documentation – Data binding [Online]. Available:
       <a href="https://angular.io/guide/architecture#data-binding">
           https://angular.io/guide/architecture#data-binding
         </a> (11.07.2017)
