@@ -187,7 +187,7 @@ function Example(props) {
         dass sich der Programmierer keine Gedanken mehr um die DOM-Manipulationen machen muss, da der
         <em>Single Point of Truth</em> stets im Javascript-Code liegt. Dadurch kann es auch nicht mehr
         zu „stillschweigendem“ Fehlverhalten etwa durch eine unvollständige Umbenennung eines Klassennamens
-        im HTML kommen.
+        im HTML-Code kommen.
       </p>
 
       <section>
@@ -276,8 +276,8 @@ c === d; // true trotz Werteverschiedenheit</pre>
       die Nachrichten zentral im Zustand der Hauptkomponente vorgehalten werden. Beim Hovern mit dem
       Mauszeiger werden die Benutzer, die den Like-Button dieser Nachricht betätigt haben, aufgezählt.
       In der Titelzeile können beliebig viele solcher „Chatclients“ hinzugefügt und wieder entfernt werden.
-      Letztere Funktionalität wäre für eine „echte“ Anwendung wohl nicht wirklich sinnvoll, sie dient aber
-      der Demonstration des unidirektionalen Datenflusses und des <em>Single Point of Truth</em>.
+      Letztere Funktionalität wäre für eine „echte“ Anwendung wohl nicht wirklich sinnvoll, sie dient
+      aber der Demonstration des unidirektionalen Datenflusses und des <em>Single Point of Truth</em>.
     </p>
   </section>
 
@@ -290,49 +290,49 @@ c === d; // true trotz Werteverschiedenheit</pre>
   <section class="references">
     <h2>Literaturverzeichnis</h2>
     <p class="reference" id="r1">
-      [1] React Documentation [Online]. Available:
+      [1] Facebook. <em>React Documentation</em> [Online]. Available:
       <a href="https://facebook.github.io/react/docs/">
         https://facebook.github.io/react/docs/
       </a> (28.06.2017)
     </p>
     <p class="reference" id="r2">
-      [2] Github-Repository zu <em>create-react-app</em> [Online]. Available:
+      [2] Facebook. create-react-app [Online]. Available:
       <a href="https://github.com/facebookincubator/create-react-app">
         https://github.com/facebookincubator/create-react-app
       </a> (28.06.2017)
     </p>
     <p class="reference" id="r3">
-      [3] Babel-REPL-Umgebung [Online]. Available:
+      [3] <em>Babel-REPL-Umgebung</em> [Online]. Available:
       <a href="https://babeljs.io/repl/#?presets=react&amp;code_lz=DwIwrgLhD2B2AEECeAHApgXgEQGcwgFsBLCLAPgGU1YATa4AenCjjKA">
         https://babeljs.io/repl/
       </a> (28.06.2017)
     </p>
     <p class="reference" id="r4">
-      [4] React Documention – JSX Prevents Injection Attacks [Online]. Available:
+      [4] Facebook. <em>React Documention – JSX Prevents Injection Attacks</em> [Online]. Available:
       <a href="https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks">
         https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks
       </a> (28.06.2017)
     </p>
     <p class="reference" id="r5">
-      [5] React’s JSX: The Other Side of the Coin [Online]. Available:
+      [5] Cory House. (2015, Aug. 13). <em>React’s JSX: The Other Side of the Coin</em> [Online]. Available:
       <a href="https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98">
         https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98
       </a> (11.07.2017)
     </p>
     <p class="reference" id="r6">
-      [6] React Documention – State updates may be asynchronous [Online]. Available:
+      [6] Facebook. <em>React Documention – State updates may be asynchronous</em> [Online]. Available:
       <a href="https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous">
         https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
       </a> (11.07.2017)
     </p>
     <p class="reference" id="r7">
-      [7] Angular Documentation – Data binding [Online]. Available:
+      [7] Google. <em>Angular Documentation – Data binding</em> [Online]. Available:
       <a href="https://angular.io/guide/architecture#data-binding">
         https://angular.io/guide/architecture#data-binding
       </a> (11.07.2017)
     </p>
     <p class="reference" id="r8">
-      [8] React Documention – Identify where your state should live [Online]. Available:
+      [8] Facebook. <em>React Documention – Identify where your state should live</em> [Online]. Available:
       <a href="https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live">
         https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
       </a> (11.07.2017)
@@ -345,7 +345,7 @@ c === d; // true trotz Werteverschiedenheit</pre>
       </a> (12.07.2017)
     </p>
     <p class="reference" id="r10">
-      [10] React Documentation – The diffing algorithm [Online]. Available:
+      [10] Facebook. <em>React Documentation – The diffing algorithm</em> [Online]. Available:
       <a href="https://facebook.github.io/react/docs/reconciliation.html#the-diffing-algorithm">
         https://facebook.github.io/react/docs/reconciliation.html#the-diffing-algorithm
       </a> (12.07.2017)
@@ -355,26 +355,40 @@ c === d; // true trotz Werteverschiedenheit</pre>
       vol. 59, no. 12, pp. 56–62, Dec. 2016.
     </p>
     <p class="reference" id="r12">
-      [12] React Documentation – The Component Lifecycle [Online]. Available:
+      [12] Facebook. <em>React Documentation – The Component Lifecycle</em> [Online]. Available:
       <a href="https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle">
         https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle
       </a> (12.07.2017)
     </p>
     <p class="reference" id="r13">
-      [13] ImmutableJS [Online]. Available:
+      [13] Facebook. <em>ImmutableJS</em> [Online]. Available:
       <a href="https://facebook.github.io/immutable-js/">
         https://facebook.github.io/immutable-js/
       </a> (12.07.2017)
     </p>
     <p class="reference" id="r14">
-      [14]
-      <a href="">
-      </a>
+      [14] Facebook. <em>React Documentation – ReactDOMServer</em> [Online]. Available:
+      <a href="https://facebook.github.io/react/docs/react-dom-server.html">
+        https://facebook.github.io/react/docs/react-dom-server.html
+      </a> (13.07.2017)
     </p>
     <p class="reference" id="r15">
-      [15]
-      <a href="">
-      </a>
+      [15] Flipboard Engineering. (2015, Feb. 10). <em>60 FPS on the mobile web</em> [Online]. Available:
+      <a href="http://engineering.flipboard.com/2015/02/mobile-web">
+        http://engineering.flipboard.com/2015/02/mobile-web
+      </a> (13.07.2017)
+    </p>
+    <p class="reference" id="r16">
+      [16] Project September. <em>gl-react</em> [Online]. Available:
+      <a href="https://projectseptemberinc.gitbooks.io/gl-react/content/">
+        https://projectseptemberinc.gitbooks.io/gl-react/content/
+      </a> (13.07.2017)
+    </p>
+    <p class="reference" id="r17">
+      [17] Facebook. <em>React Native</em> [Online]. Available:
+      <a href="https://facebook.github.io/react-native/">
+        https://facebook.github.io/react-native/
+      </a> (13.07.2017)
     </p>
   </section>
 </body>
