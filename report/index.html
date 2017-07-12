@@ -268,6 +268,16 @@ c === d; // true trotz Werteverschiedenheit</pre>
   <section>
     <h2>React-Demo</h2>
     <p>
+      Als Demo wurde ein „Chatprogramm“ entwickelt, bei dem sich ein Benutzer „einloggen“ kann, indem er einen
+      Namen eingibt. Dabei wird durch die Hauptkomponente <code>App</code> überprüft, ob dieser
+      Benutzername bereits vorhanden ist. Jeder eingeloggte Benutzer kann dann Nachrichten eingeben und
+      sieht eine Liste der existierenden Nachrichten. An jeder Nachricht ist ein „Like“-Button, der bei
+      Betätigung den Zähler erhöht. Dies geschieht bei allen eingeloggten Benutzern gleichzeitig, da
+      die Nachrichten zentral im Zustand der Hauptkomponente vorgehalten werden. Beim Hovern mit dem
+      Mauszeiger werden die Benutzer, die den Like-Button dieser Nachricht betätigt haben, aufgezählt.
+      In der Titelzeile können beliebig viele solcher „Chatclients“ hinzugefügt und wieder entfernt werden.
+      Letztere Funktionalität wäre für eine „echte“ Anwendung wohl nicht wirklich sinnvoll, sie dient aber
+      der Demonstration des unidirektionalen Datenflusses und des <em>Single Point of Truth</em>.
     </p>
   </section>
 
