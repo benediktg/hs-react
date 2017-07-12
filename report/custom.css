@@ -11,3 +11,9 @@ section h3:before {
     counter-increment: section;
     content: counters(section, ".") " ";
 }
+
+/* Inconsolata für <code> */
+
+code {
+    font-family: 'Inconsolata', monospace;
+}
