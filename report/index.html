@@ -27,6 +27,7 @@
   <section>
     <h2>Einleitung</h2>
     <p>
+
     </p>
   </section>
 
@@ -228,9 +229,32 @@ function Example(props) {
 
       <section>
         <h4>Unveränderbare Datenstrukturen</h4>
-        <p></p>
-      </section>
+        <p>
+          Bei einer eigenen Implementation der Methode <code>shouldComponentUpdate</code> und wenn der
+          Zustand zusammengesetzte Datentypen enthält, ist es von Vorteil, wenn man entweder „unveränderbare
+          Datenstrukturen“ <a href="#r13">[13]</a> verwendet oder darauf achtet, die Objekte nicht zu
+          verändern, sondern sie grundsätzlich durch neue Objekte zu ersetzen. Dies bringt den Vorteil
+          mit sich, dass dann anstatt eines „tiefen Vergleichs“ über alle Eigenschaften des Objekts ein
+          einfacher Vergleich der Referenzen genügt, um auszusagen, ob sich das Objekt verändert hat:
+        </p>
+        <pre>
+let a, b, c, d;
+a = b = {key: 1, value: 0};
+c = d = {key: 1, value: 0};
 
+a = {...a, value: 1};
+c.value = 1;
+
+a === b; // false
+c === d; // true trotz Werteverschiedenheit</pre>
+        <p>
+          Sozusagen als Shortcut für diesen Zweck gibt es die Basisklasse
+          <code>React.PureComponent</code>, welche die Methode <code>shouldComponentUpdate</code> bereits
+          mit dem Vergleich mittels <code>===</code> implementiert hat. Der Begriff
+          <em>PureComponent</em> lehnt sich dabei an „reine Funktionen“ aus der funktionalen Programmierung
+          an, welche bei gleicher Eingabe stets die gleiche Ausgabe liefern.
+        </p>
+      </section>
     </section>
 
   </section>
@@ -327,9 +351,10 @@ function Example(props) {
       </a> (12.07.2017)
     </p>
     <p class="reference" id="r13">
-      [13]
-      <a href="">
-      </a>
+      [13] ImmutableJS [Online]. Available:
+      <a href="https://facebook.github.io/immutable-js/">
+        https://facebook.github.io/immutable-js/
+      </a> (12.07.2017)
     </p>
     <p class="reference" id="r14">
       [14]
