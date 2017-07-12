@@ -46,6 +46,8 @@
         Programmiersprache wie Javascript zugreifen kann. <a href="#r5">[5]</a>
       </p>
       <p>
+        Im Vergleich zu gewöhnlichem HTML werden Attribute in Camelcase-Schreibweise notiert und es ist wie bei
+        XHTML erforderlich, auch selbstschließende Tags mit einem <code>/&gt;</code> zu schließen.
         Da <code>class</code> und <code>for</code> in Javascript bereits reservierte Wörter sind, sollte
         auf <code>className</code> respektive <code>htmlFor</code> ausgewichen werden. Javascript-Ausdrücke
         können innerhalb geschweifter Klammern eingegeben werden. Zur Verhinderung von Cross-Site-Scripting
@@ -150,11 +152,37 @@ function Example(props) {
         und liest dieses von einer anderen Stelle im Code aus.) Dies kann zum einen zu schlechter Performance,
         weil etwa unnötig viele DOM-Manipulationen erfolgen, und zum anderen zu Inkonsistenzen führen,
         da der HTML-Code dann eng mit dem Javascript-Programm verzahnt ist und z. B. bei einer Umbenennung
-        von Selektoren (IDs oder HTML-Klassen) etwas übersehen worden ist. Der Fehler taucht dann erst
-        beim Ausprobieren und evtl. auch nur auf unauffällige Art und Weise auf. <a href="#r5">[5]</a>
+        von IDs oder HTML-Klassen etwas übersehen worden ist. Der Fehler macht sich dann erst beim Ausprobieren
+        und evtl. auch nur auf unauffällige Art und Weise bemerkbar. <a href="#r5">[5]</a>
       </p>
       <p>
-        React addressiert dieses Problem mit einem seiner prominentesten Features, dem virtuellen DOM.
+        React addressiert dieses Problem mit einem seiner prominentesten Features, dem virtuellen DOM. Damit
+        wird grundsätzlich bei jedem Aufruf der <code>render</code>-Methode der komplette DOM-Baum
+        zu dieser Komponente neu erstellt. Aber ist das nicht zu aufwändig? Die minimale Anzahl an DOM-Manipulation
+        durch Vergleich der Bäume zu finden, wäre mit einer Laufzeitkomplexität mehr als
+        <em>O</em>(<em>n</em>³) und <em>n</em> als Anzahl der Elemente im Baum sehr teuer.
+        <a href="#r9">[9]</a> Stattdessen wird anhand einer Heuristik festgelegt, welche Komponenten
+        ein tatsächliches Neurendern erfordern:
+        <ul>
+          <li>
+            Wenn sich der Typ eines Elements ändert, z. B. von <code>&lt;a&gt;</code> zu <code>&lt;p&gt;</code>,
+            dann wird grundsätzlich der entsprechende DOM-Unterbaum gelöscht und neu aufgebaut. Auch
+            der Zustand der dazugehörigen Komponenten geht dabei verloren.
+          </li>
+          <li>
+            Bleibt der Typ gleich, werden die Attribute verglichen und nur diejenigen ausgetauscht, die sich geändert
+            haben. Im Falle des <code>style</code>-Attributs, mit dem sich CSS-Eigenschaften
+            in Form eines Objektes übergeben lassen, werden auch diese einzeln verglichen.
+          </li>
+        </ul>
+        <a href="#r10">[10]</a>
+        <p>
+          Viel wichtiger als die möglichen Performanceverbesserungen ist beim virtuellen DOM allerdings der Aspekt,
+          dass sich der Programmierer keine Gedanken mehr um die DOM-Manipulationen machen muss, da der
+          <em>Single Point of Truth</em> stets im Javascript-Code liegt. Dadurch kann es auch nicht mehr
+          zu „stillschweigendem“ Fehlverhalten etwa durch eine unvollständige Umbenennung eines Klassennamens
+          im HTML kommen.
+        </p>
       </p>
 
       <section>
@@ -191,50 +219,63 @@ function Example(props) {
     <p class="reference" id="r1">
       [1] React Documentation [Online]. Available:
       <a href="https://facebook.github.io/react/docs/">
-          https://facebook.github.io/react/docs/
-        </a> (28.06.2017)
+        https://facebook.github.io/react/docs/
+      </a> (28.06.2017)
     </p>
     <p class="reference" id="r2">
       [2] Github-Repository zu <em>create-react-app</em> [Online]. Available:
       <a href="https://github.com/facebookincubator/create-react-app">
-          https://github.com/facebookincubator/create-react-app
-        </a> (28.06.2017)
+        https://github.com/facebookincubator/create-react-app
+      </a> (28.06.2017)
     </p>
     <p class="reference" id="r3">
       [3] Babel-REPL-Umgebung [Online]. Available:
       <a href="https://babeljs.io/repl/#?presets=react&amp;code_lz=DwIwrgLhD2B2AEECeAHApgXgEQGcwgFsBLCLAPgGU1YATa4AenCjjKA">
-          https://babeljs.io/repl/
-        </a> (28.06.2017)
+        https://babeljs.io/repl/
+      </a> (28.06.2017)
     </p>
     <p class="reference" id="r4">
       [4] React Documention – JSX Prevents Injection Attacks [Online]. Available:
       <a href="https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks">
-          https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks
-        </a> (28.06.2017)
+        https://facebook.github.io/react/docs/introducing-jsx.html#jsx-prevents-injection-attacks
+      </a> (28.06.2017)
     </p>
     <p class="reference" id="r5">
       [5] React’s JSX: The Other Side of the Coin [Online]. Available:
       <a href="https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98">
-          https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98
-        </a> (11.07.2017)
+        https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98
+      </a> (11.07.2017)
     </p>
     <p class="reference" id="r6">
       [6] React Documention – State updates may be asynchronous [Online]. Available:
       <a href="https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous">
-          https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
-        </a> (11.07.2017)
+        https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
+      </a> (11.07.2017)
     </p>
     <p class="reference" id="r7">
       [7] Angular Documentation – Data binding [Online]. Available:
       <a href="https://angular.io/guide/architecture#data-binding">
-          https://angular.io/guide/architecture#data-binding
-        </a> (11.07.2017)
+        https://angular.io/guide/architecture#data-binding
+      </a> (11.07.2017)
     </p>
     <p class="reference" id="r8">
       [8] React Documention – Identify where your state should live [Online]. Available:
       <a href="https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live">
-          https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
-        </a> (11.07.2017)
+        https://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
+      </a> (11.07.2017)
+    </p>
+    <p class="reference" id="r9">
+      [9] Philip Bille, “A Survey on Tree Edit Distance and Related Problems,” IT University of Copenhagen,
+      Copenhagen, DK, pp. 10–11. Available:
+      <a href="http://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf">
+        http://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf
+      </a> (12.07.2017)
+    </p>
+    <p class="reference" id="r10">
+      [10] React Documentation – The diffing algorithm [Online]. Available:
+      <a href="https://facebook.github.io/react/docs/reconciliation.html#the-diffing-algorithm">
+        https://facebook.github.io/react/docs/reconciliation.html#the-diffing-algorithm
+      </a>
     </p>
   </section>
 </body>
