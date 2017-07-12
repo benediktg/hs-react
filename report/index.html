@@ -156,40 +156,79 @@ function Example(props) {
         und evtl. auch nur auf unauffällige Art und Weise bemerkbar. <a href="#r5">[5]</a>
       </p>
       <p>
-        React addressiert dieses Problem mit einem seiner prominentesten Features, dem virtuellen DOM. Damit
-        wird grundsätzlich bei jedem Aufruf der <code>render</code>-Methode der komplette DOM-Baum
+        React adressiert dieses Problem mit einem seiner prominentesten Features, dem virtuellen DOM. Damit wird
+        grundsätzlich bei jedem Aufruf der <code>render</code>-Methode der komplette DOM-Baum
         zu dieser Komponente neu erstellt. Aber ist das nicht zu aufwändig? Die minimale Anzahl an DOM-Manipulation
         durch Vergleich der Bäume zu finden, wäre mit einer Laufzeitkomplexität mehr als
         <em>O</em>(<em>n</em>³) und <em>n</em> als Anzahl der Elemente im Baum sehr teuer.
         <a href="#r9">[9]</a> Stattdessen wird anhand einer Heuristik festgelegt, welche Komponenten
         ein tatsächliches Neurendern erfordern:
-        <ul>
-          <li>
-            Wenn sich der Typ eines Elements ändert, z. B. von <code>&lt;a&gt;</code> zu <code>&lt;p&gt;</code>,
-            dann wird grundsätzlich der entsprechende DOM-Unterbaum gelöscht und neu aufgebaut. Auch
-            der Zustand der dazugehörigen Komponenten geht dabei verloren.
-          </li>
-          <li>
-            Bleibt der Typ gleich, werden die Attribute verglichen und nur diejenigen ausgetauscht, die sich geändert
-            haben. Im Falle des <code>style</code>-Attributs, mit dem sich CSS-Eigenschaften
-            in Form eines Objektes übergeben lassen, werden auch diese einzeln verglichen.
-          </li>
-        </ul>
-        <a href="#r10">[10]</a>
-        <p>
-          Viel wichtiger als die möglichen Performanceverbesserungen ist beim virtuellen DOM allerdings der Aspekt,
-          dass sich der Programmierer keine Gedanken mehr um die DOM-Manipulationen machen muss, da der
-          <em>Single Point of Truth</em> stets im Javascript-Code liegt. Dadurch kann es auch nicht mehr
-          zu „stillschweigendem“ Fehlverhalten etwa durch eine unvollständige Umbenennung eines Klassennamens
-          im HTML kommen.
-        </p>
+      </p>
+      <ul>
+        <li>
+          Wenn sich der Typ eines Elements ändert, z. B. von <code>&lt;a&gt;</code> zu <code>&lt;p&gt;</code>,
+          dann wird grundsätzlich der entsprechende DOM-Unterbaum gelöscht und neu aufgebaut. Auch der
+          Zustand der dazugehörigen Komponenten geht dabei verloren.
+        </li>
+        <li>
+          Bleibt der Typ gleich, werden die Attribute verglichen und nur diejenigen ausgetauscht, die sich geändert
+          haben. Im Falle des <code>style</code>-Attributs, mit dem sich CSS-Eigenschaften
+          in Form eines Objektes übergeben lassen, werden auch diese einzeln verglichen.
+        </li>
+        <li>
+          Anschließend wird mit den Kindelementen fortgefahren. Dadurch, dass jedes Element im Baum nur einmal
+          betrachtet wird, verhält sich der Algorithmus hinsichtlich seiner Laufzeitkomplexität linear.
+          <a href="#r10">[10]</a>
+        </li>
+      </ul>
+      <p>
+        Viel wichtiger als die möglichen Performance-Verbesserungen ist beim virtuellen DOM allerdings der Aspekt,
+        dass sich der Programmierer keine Gedanken mehr um die DOM-Manipulationen machen muss, da der
+        <em>Single Point of Truth</em> stets im Javascript-Code liegt. Dadurch kann es auch nicht mehr
+        zu „stillschweigendem“ Fehlverhalten etwa durch eine unvollständige Umbenennung eines Klassennamens
+        im HTML kommen.
       </p>
 
       <section>
         <h4>Lebenszyklus einer Komponente</h4>
         <p>
-
+          Im Zusammenhang mit dem virtuellen DOM gilt es noch zu beachten, dass jede Komponente eine Art Lebenszyklus
+          aufweist. Dazu besitzt die Klasse <code>React.Component</code> folgende Methoden,
+          die bei der Implementierung der Komponente überschrieben werden können: <a href="#r12">[12]</a>
         </p>
+        <ul>
+          <li><code>constructor</code></li>
+          <li><code>componentWillMount</code></li>
+          <li><code>componentDidMount</code></li>
+          <li><code>componentWillReceiveProps</code></li>
+          <li><code>shouldComponentUpdate</code></li>
+          <li><code>componentWillUpdate</code></li>
+          <li><code>render</code></li>
+          <li><code>componentDidUpdate</code></li>
+          <li><code>componentWillUnmount</code></li>
+        </ul>
+        <p>
+          Einige davon seien hier kurz erläutert, da sie relativ häufig verwendet werden. Im Konstruktor wird,
+          wie bereits im Abschnitt zu Komponenten erwähnt, das Zustandsobjekt initialisiert. Die
+          <code>render</code>-Methode wird standardmäßig immer dann aufgerufen, wenn sich der Zustand
+          aufgrund eines <code>setState</code>-Aufrufs geändert hat. <code>componentDidMount</code> wird
+          aufgerufen, wenn eine Komponente in den DOM-Baum eingefügt wurde und bietet die Möglichkeit,
+          Daten von einer entfernten Ressource bzw. API zu laden. Mittels
+          <code>componentWillReceiveProps</code> lässt sich auf Änderungen in den <em>props</em> reagieren,
+          um gegebenenfalls den Zustand anzupassen. Durch <code>shouldComponentUpdate</code> kann man
+          festlegen, ob die Methoden <code>componentWillUpdate</code>, <code>render</code> und
+          <code>componentDidUpdate</code> überhaupt aufgerufen werden sollen. Hierzu erhält die Methode
+          den neuen Zustand und die neuen <em>props</em> der Komponente als Argumente. In der Standardimplementierung
+          gibt sie stets <code>true</code> zurück, in einer eigenen Implementierung ließe sich dann durch
+          den Vergleich von <code>this.state</code> und <code>this.props</code> mit den Pendants aus
+          den Argumenten eine Performancesteigerung erzielen, indem stattdessen unter Umständen
+          <code>false</code> zurückgegeben wird.
+        </p>
+      </section>
+
+      <section>
+        <h4>Unveränderbare Datenstrukturen</h4>
+        <p></p>
       </section>
 
     </section>
@@ -275,6 +314,31 @@ function Example(props) {
       [10] React Documentation – The diffing algorithm [Online]. Available:
       <a href="https://facebook.github.io/react/docs/reconciliation.html#the-diffing-algorithm">
         https://facebook.github.io/react/docs/reconciliation.html#the-diffing-algorithm
+      </a> (12.07.2017)
+    </p>
+    <p class="reference" id="r11">
+      [11] CACM Staff, “React: Facebook’s Functional Turn On Writing Javascript,” Communications of the ACM,
+      vol. 59, no. 12, pp. 56–62, Dec. 2016.
+    </p>
+    <p class="reference" id="r12">
+      [12] React Documentation – The Component Lifecycle [Online]. Available:
+      <a href="https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle">
+        https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle
+      </a> (12.07.2017)
+    </p>
+    <p class="reference" id="r13">
+      [13]
+      <a href="">
+      </a>
+    </p>
+    <p class="reference" id="r14">
+      [14]
+      <a href="">
+      </a>
+    </p>
+    <p class="reference" id="r15">
+      [15]
+      <a href="">
       </a>
     </p>
   </section>
