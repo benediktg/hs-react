@@ -25,14 +25,24 @@
   <section>
     <h2>Einleitung</h2>
     <p>
-
+      Bislang war es häufig gängig, den Aufbau von Webanwendungen strikt in HTML für den Inhalt, CSS für die
+      Präsentation und Javascript für Interaktivität zu unterteilen. Allerdings sorgt diese Trennung
+      auch für Probleme. So ist der Javascript-Code dann eng an die HTML-Struktur gebunden und dadurch
+      nur bedingt wiederverwendbar. Des Weiteren können schnell Inkonsistenzen auftreten, wenn Informationen
+      sowohl in HTML-Attributen und -Tags als auch in Javascript-Objekten vorliegen. Diese Ausarbeitung
+      befasst sich mit einer Javascript-Bibliothek, die auf jene Trennung der Zuständigkeiten verzichtet,
+      React.
     </p>
   </section>
 
   <section>
     <h2>Features</h2>
     <p>
-      React ist eine Javascript-Bibliothek zur deklarativen Programmierung von Single Page Applications (SPAs).
+      React ist eine Javascript-Bibliothek, die es erlaubt, Webanwendungen auf Basis von Komponenten zu strukturieren.
+      Es folgt dabei dem Ansatz des unidirektionalen Datenflusses und abstrahiert das DOM, so dass es
+      nicht imperativ manpipuliert werden muss, sondern man bloß mehr oder weniger deklarativ beschreiben
+      braucht, was dargestellt werden soll. Diese Features werden in den folgenden Abschnitten näher
+      vorgestellt.
     </p>
 
     <section>
@@ -248,9 +258,7 @@ c === d; // true trotz Werteverschiedenheit</pre>
         <p>
           Sozusagen als Shortcut für diesen Zweck gibt es die Basisklasse
           <code>React.PureComponent</code>, welche die Methode <code>shouldComponentUpdate</code> bereits
-          mit dem Vergleich mittels <code>===</code> implementiert hat. Der Begriff
-          <em>PureComponent</em> lehnt sich dabei an „reine Funktionen“ aus der funktionalen Programmierung
-          an, welche bei gleicher Eingabe stets die gleiche Ausgabe liefern.
+          mit dem Vergleich mittels <code>===</code> implementiert hat.
         </p>
       </section>
     </section>
