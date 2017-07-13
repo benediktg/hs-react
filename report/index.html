@@ -42,7 +42,7 @@
       Es folgt dabei dem Ansatz des unidirektionalen Datenflusses und abstrahiert das DOM, so dass es
       nicht imperativ manpipuliert werden muss, sondern man bloß mehr oder weniger deklarativ beschreiben
       braucht, was dargestellt werden soll. Diese Features werden in den folgenden Abschnitten näher
-      vorgestellt.
+      vorgestellt. <a href="#r1">[1]</a>
     </p>
 
     <section>
@@ -268,6 +268,12 @@ c === d; // true trotz Werteverschiedenheit</pre>
   <section>
     <h2>Flux</h2>
     <p>
+      Wenn die Komplexität einer Anwendung ansteigt, entsteht im Falle einer React-App schnell ein tief verzweigter
+      Baum an Komponenten. Da dadurch wahrscheinlich auch viele Callbacks über mehrere Ebenen durchgereicht
+      werden müssen, wird dies dementsprechend unübersichtlich.
+    </p>
+    <p>
+
     </p>
   </section>
 
@@ -281,9 +287,9 @@ c === d; // true trotz Werteverschiedenheit</pre>
       Betätigung den Zähler erhöht. Dies geschieht bei allen eingeloggten Benutzern gleichzeitig, da
       die Nachrichten zentral im Zustand der Hauptkomponente vorgehalten werden. Beim Hovern mit dem
       Mauszeiger werden die Benutzer, die den Like-Button dieser Nachricht betätigt haben, aufgezählt.
-      In der Titelzeile können beliebig viele solcher „Chatclients“ hinzugefügt und wieder entfernt werden.
-      Letztere Funktionalität wäre für eine „echte“ Anwendung wohl nicht wirklich sinnvoll, sie dient
-      aber der Demonstration des unidirektionalen Datenflusses und des <em>Single Point of Truth</em>.
+      Über zwei Schaltflächen in der Titelzeile können beliebig viele solcher „Chatclients“ hinzugefügt
+      und wieder entfernt werden. Letztere Funktionalität wäre für eine „echte“ Anwendung wohl nicht
+      wirklich sinnvoll, sie dient aber der Demonstration des unidirektionalen Datenflusses und des <em>Single Point of Truth</em>.
     </p>
   </section>
 
